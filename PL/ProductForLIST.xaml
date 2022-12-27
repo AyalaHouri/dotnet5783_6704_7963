@@ -1,0 +1,65 @@
+﻿<Window x:Class="PL.ProductForLIST"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="ProductForLIST" Height="640" Width="800">
+    <Grid Name="MainGrid">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black"/>
+                <GradientStop Color="#FFC9EB6C" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="500*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
+VerticalAlignment="Stretch" Width="auto" Background="#FFEBEBEB">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions >
+            <ComboBox Grid.Column="1" Name="CategorySelector" HorizontalAlignment="Left" SelectionChanged="CategorySelector_SelectionChanged" SizeChanged="CategorySelector_SizeChanged" Width="400"/>
+            <Label Grid.Column="0" Content="Category" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Center"/>
+        </Grid>
+        <ListView x:Name="ProductList" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ProductList_SelectionChanged" Margin="115,119,115,124" MouseDoubleClick="ProductList_MouseDoubleClick" Grid.Row="1">
+
+            <ListView.Background>
+                <ImageBrush ImageSource="/Screenshot 2022-12-13 121650.png"/>
+            </ListView.Background>
+
+
+            <ListView.View>
+                <GridView>
+
+                    <GridViewColumn  DisplayMemberBinding = "{Binding Path = ID}"
+                    Header = "ID"
+                    Width = "100" />
+
+                    <GridViewColumn
+                    DisplayMemberBinding = "{Binding Path = NameOfProduct}"
+                    Header = "Name"
+                    Width = "180" />
+
+                    <GridViewColumn
+                    DisplayMemberBinding = "{Binding Path = Category}"
+                    Header = "Category"
+                    Width = "100" />
+
+                    <GridViewColumn
+                    DisplayMemberBinding = "{Binding Path = PricePerProduct}"
+                    Header = "Price"
+                    Width = "100" />
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Content="Add new Product" Grid.Row="2" HorizontalAlignment="Right" Margin="5" Padding="5" Click="Button_Click" Background="#FF668F66"/>
+        <Button Content="Back" HorizontalAlignment="Left" Margin="24,0,0,0" Grid.Row="2" VerticalAlignment="Center" Height="28" Width="108" Background="#FFA5D228" Click="Button_Click_2"/>
+    </Grid>
+</Window>

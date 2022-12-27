@@ -1,0 +1,28 @@
+﻿<Window x:Class="PL.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Screenshot 2022-12-13 121650.png"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="showproductlist" Content="PRESS TO ENTER" HorizontalAlignment="Center" Margin="0,198,0,0" VerticalAlignment="Top" Click="showproductlist_Click" Height="28" Width="100" Foreground="#FF20201C" Background="{x:Null}">
+            <Button.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FF72B745" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.BorderBrush>
+        </Button>
+        <Label Content="Welcome to BU!&#xD;&#xA;To enter press the BUtton below" Margin="169,134,381,253"/>
+        <Button Content="Close" HorizontalAlignment="Left" Margin="726,10,0,0" VerticalAlignment="Top" Height="25" Width="64" Background="#FF85AF4B" Click="Button_Click"/>
+
+    </Grid>
+</Window>

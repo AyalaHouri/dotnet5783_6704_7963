@@ -1,0 +1,31 @@
+﻿<Window x:Class="PL.Product"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="Product" Height="450" Width="800">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Screenshot 2022-12-13 121650.png"/>
+        </Grid.Background>
+        <TextBox Name="IDtb"  HorizontalAlignment="Left" Margin="255,60,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="187" Height="27"/>
+        <TextBox Name="Nametb" HorizontalAlignment="Left" Margin="255,114,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="187" Height="27"/>
+        <TextBox Name="Pricetb" HorizontalAlignment="Left" Margin="255,225,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="187" Height="27"/>
+        <TextBox Name="Amount" HorizontalAlignment="Left" Margin="255,280,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="187" Height="27"/>
+        <Label x:Name="ID" Content="ID" HorizontalAlignment="Left" Margin="132,61,0,0" VerticalAlignment="Top" Height="26" Width="101"/>
+        <Label Content="Name" HorizontalAlignment="Left" Margin="132,115,0,0" VerticalAlignment="Top" Height="26" Width="101"/>
+        <Label Content="Category" HorizontalAlignment="Left" Margin="132,171,0,0" VerticalAlignment="Top" Height="26" Width="101"/>
+        <Label Content="Price" HorizontalAlignment="Left" Margin="132,226,0,0" VerticalAlignment="Top" Height="26" Width="101"/>
+        <Label Content="Amount" HorizontalAlignment="Left" Margin="132,281,0,0" VerticalAlignment="Top" Height="26" Width="101"/>
+        <ComboBox Name="Categorycb" Margin="255,165,358,217" SelectionChanged="Categorycb_SelectionChanged"/>
+        <Button x:Name="addbutton" Content="ADD" HorizontalAlignment="Left" Margin="255,337,0,0" VerticalAlignment="Top" Height="24" Width="187" Background="#FFADF964" Click="Button_Click">
+
+        </Button>
+        <Button Content="Back" HorizontalAlignment="Left" Margin="255,388,0,0" VerticalAlignment="Top" Width="187" Height="27" Background="#FFB7F067" Click="Button_Click_1"/>
+        <Label x:Name="TextBoxLable" Content="update or add" HorizontalAlignment="Left" Margin="306,10,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="updatebutton" Content="Update" HorizontalAlignment="Left" Margin="327,341,0,0" VerticalAlignment="Top" Background="#FFADF964" Click="updatebutton_Click"/>
+
+    </Grid>
+</Window>
