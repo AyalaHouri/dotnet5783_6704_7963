@@ -14,7 +14,7 @@ namespace BlApi
         void DeleteProduct(int IDProduct);
         void updateProduct(BO.Product DProduct);
         public IEnumerable<BO.ProductForList?> GetProducts(Func<DO.Product?, bool>? func);
-        public bool existbool(int productid);
+        //public bool existbool(int productid);
 
         ///IEnumerable<ProductItem> GetOrderItemsByProductId(int productId);
     }

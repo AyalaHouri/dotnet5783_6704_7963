@@ -24,7 +24,7 @@ namespace BlImplementation
                 {
                     neworderitem.Amount = 1;
                     neworderitem.TotalPrice += neworderitem.Price;
-                    cart.Items = new List<BO.OrderItem>();
+                    cart.Items = new List<BO.OrderItem?>();
                     cart.Items.Add(neworderitem);
                     cart.TotalPrice += neworderitem.Price;
                 }
@@ -36,7 +36,7 @@ namespace BlImplementation
 
                 foreach (var prod in cart.Items)//check if the product is allrady exsite
                 {
-                    if (prod.ProductID == productid)
+                    if (prod?.ProductID == productid)
                     {
                         exist = true;
                         if (product.InStoke > 0)
@@ -83,7 +83,7 @@ namespace BlImplementation
 
             foreach (var prod in cart.Items)
             {
-                if (prod.ProductID == productid)
+                if (prod?.ProductID == productid)
                 {
                     exist = true;
 
@@ -141,9 +141,9 @@ namespace BlImplementation
             //  throw new ExceptionLogi("Customer email is not valid");
             foreach (var prod in cart.Items)
             {
-                if (prod.Price <= 1)
+                if (prod?.Price <= 1)
                     throw new BO.ExceptionLogi($"The {prod.NameOfProduct} product price is invalid");
-                if (prod.Amount < 1)
+                if (prod?.Amount < 1)
                     throw new BO.ExceptionLogi($"The {prod.NameOfProduct} product quantity is invalid");
             }
             DO.Order neworder = new DO.Order();
@@ -155,10 +155,10 @@ namespace BlImplementation
             int orderid = _idal.Order.Add(neworder);
             foreach (var prod in cart.Items)
             {
-                neworderitem.ProductID = prod.ProductID;
+                neworderitem.ProductID = prod?.ProductID ??0;
                 neworderitem.OrderID = orderid;
-                neworderitem.Price = prod.Price;
-                neworderitem.Amount = prod.Amount;
+                neworderitem.Price = prod?.Price??0;
+                neworderitem.Amount = prod?.Amount??0;
                 if (_idal.Product.GetByID(prod.ProductID).InStoke >= prod.Amount)
                 {
                     DO.Product temprodect = new DO.Product();
