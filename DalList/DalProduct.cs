@@ -56,10 +56,6 @@ internal class DalProduct : IProduct
     {
         return DataSource.LProduct;
     }
-    //public IEnumerable<ProductItem> GetProductByProductId(int productId)
-    //{
-    //    return (IEnumerable<ProductItem>)DataSource.LProduct.Where(product => product.ID == productId);
-    //}
 }
 
 

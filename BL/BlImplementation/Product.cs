@@ -1,6 +1,7 @@
 ﻿
 
 using System.Linq;
+using System.Security.Cryptography;
 
 namespace BlImplementation
 {
@@ -149,16 +150,25 @@ namespace BlImplementation
             }
             else
             {
-                return products.Select(product =>
-                {
-                    return new BO.ProductForList
-                    {
-                        ID = (int)product?.ID!,
-                        Category = (BO.Enum.category?)product?.Category,
-                        NameOfProduct = product?.NameOfProduct,
-                        PricePerProduct = (int)product?.Price!,
-                    };
-                });
+                //return products.Select(product =>
+                //{
+                //    return new BO.ProductForList
+                //    {
+                //        ID = (int)product?.ID!,
+                //        Category = (BO.Enum.category?)product?.Category,
+                //        NameOfProduct = product?.NameOfProduct,
+                //        PricePerProduct = (int)product?.Price!,
+                //    };
+                //});
+                var v = from product in products
+                        select new BO.ProductForList()
+                        {
+                            ID = (int)product?.ID!,
+                            Category = (BO.Enum.category?)product?.Category,
+                            NameOfProduct = product?.NameOfProduct,
+                            PricePerProduct = (int)product?.Price!,
+                        };
+                return v;
             }
 
         }

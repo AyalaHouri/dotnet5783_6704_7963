@@ -52,7 +52,7 @@ partial class Program
                     case 'e':
                         Console.WriteLine("Enter the order ID\n");
                         int.TryParse(Console.ReadLine(), out idtemp);
-                        Console.Write(bl.Order.OrderTrackingFunc(idtemp));
+                        bl.Order.OrderTrackingFunc(idtemp);
                         break;
                     default:
                         throw new Exception("error");

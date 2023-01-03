@@ -1,5 +1,7 @@
 ﻿
 using BlApi;
+using System.Linq;
+
 namespace BlImplementation
 {
     internal class Cart : ICart //class for Implementation of functions
@@ -34,19 +36,19 @@ namespace BlImplementation
             else
             {
 
-                foreach (var prod in cart.Items)//check if the product is allrady exsite
+                exist = cart.Items.Any(prod => prod?.ProductID == productid);
+                if (exist)
                 {
-                    if (prod?.ProductID == productid)
+                    var matchingProduct = cart.Items.First(prod => prod.ProductID == productid);
+                    if (product.InStoke > 0)
                     {
-                        exist = true;
-                        if (product.InStoke > 0)
-                        {
-                            prod.Amount++;
-                            prod.TotalPrice += prod.Price;
-                            cart.TotalPrice += prod.Price;
-                        }
-                        else
-                            throw new BO.ExceptionLogi("We are very sorry but the product is out of stock:(");
+                        matchingProduct.Amount++;
+                        matchingProduct.TotalPrice += matchingProduct.Price;
+                        cart.TotalPrice += matchingProduct.Price;
+                    }
+                    else
+                    {
+                        throw new BO.ExceptionLogi("We are very sorry but the product is out of stock:(");
                     }
                 }
 
@@ -81,33 +83,28 @@ namespace BlImplementation
                 throw new BO.ExceptionLogi("your cart is empty");
             }
 
-            foreach (var prod in cart.Items)
+            exist = cart.Items.Any(prod => prod?.ProductID == productid);
+            if (exist)
             {
-                if (prod?.ProductID == productid)
+                var matchingProduct = cart.Items.First(prod => prod.ProductID == productid);
+                if (matchingProduct.Amount < newAmount)
                 {
-                    exist = true;
-
-
-                    if (prod.Amount < newAmount)
+                    while (matchingProduct.Amount != newAmount)
                     {
-                        while (prod.Amount != newAmount)
-                        {
-                            AddToCart(cart, productid);
-                        }
-
+                        AddToCart(cart, productid);
                     }
-                    if (prod.Amount > newAmount)
+                }
+                if (matchingProduct.Amount > newAmount)
+                {
+                    if (matchingProduct.Amount == 1)
                     {
-                        if (prod.Amount == 1)
-                        {
-                            cart.TotalPrice -= prod.Price;
-                            cart.Items.Remove(prod);
-                        }
-                        else
-                        {
-                            prod.Amount--;
-                            cart.TotalPrice -= prod.Price;
-                        }
+                        cart.TotalPrice -= matchingProduct.Price;
+                        cart.Items.Remove(matchingProduct);
+                    }
+                    else
+                    {
+                        matchingProduct.Amount--;
+                        cart.TotalPrice -= matchingProduct.Price;
                     }
                 }
             }
@@ -153,12 +150,12 @@ namespace BlImplementation
             neworder.OrderDate = DateTime.Now;
             DO.OrderItem neworderitem = new DO.OrderItem();
             int orderid = _idal.Order.Add(neworder);
-            foreach (var prod in cart.Items)
+            cart.Items.ForEach(prod =>
             {
-                neworderitem.ProductID = prod?.ProductID ??0;
+                neworderitem.ProductID = prod?.ProductID ?? 0;
                 neworderitem.OrderID = orderid;
-                neworderitem.Price = prod?.Price??0;
-                neworderitem.Amount = prod?.Amount??0;
+                neworderitem.Price = prod?.Price ?? 0;
+                neworderitem.Amount = prod?.Amount ?? 0;
                 if (_idal.Product.GetByID(prod.ProductID).InStoke >= prod.Amount)
                 {
                     DO.Product temprodect = new DO.Product();
@@ -167,8 +164,12 @@ namespace BlImplementation
                     _idal.Product.Update(prod.ProductID, temprodect);
                     int orderitemid = _idal.OrderItem.Add(neworderitem);
                 }
-                else { throw new BO.ExceptionLogi($"We are very sorry but the {prod.NameOfProduct} product is out of stock"); }
-            }
+                else
+                {
+                    throw new BO.ExceptionLogi($"We are very sorry but the {prod.NameOfProduct} product is out of stock");
+                }
+            });
+
 
             DeletAll(cart);
         }
