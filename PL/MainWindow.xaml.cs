@@ -29,5 +29,17 @@ namespace PL
         {
             Close();
         }
-    }
+
+        private void addorder_Click(object sender, RoutedEventArgs e)
+        {
+            new Katalog().Show();
+            Close();
+        }
+
+        private void trackorder_Click(object sender, RoutedEventArgs e)
+        {
+            new trackingorder().Show();
+            Close();
+        }
+    } 
 }

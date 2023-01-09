@@ -17,6 +17,8 @@ internal class DalOrderItem : IOrderItem
         orderItem.ID = DataSource.Config.get_ID_OrderItem;
         DataSource.LOrderItem.Add(orderItem);
         DataSource.Config.I_OrderItem++;
+        var v=DataSource.LOrderItem.OrderBy(item => item?.ID);
+        DataSource.LOrderItem = v.ToList();
         return orderItem.ID;
     }
 
@@ -37,14 +39,6 @@ internal class DalOrderItem : IOrderItem
         DataSource.LOrderItem.Remove(DataSource.searchOrderItem(dorderitem.ID));
         DataSource.Config.I_OrderItem--;
     }
-    //public OrderItem Read(int I)
-    //{
-    //    if (DataSource.LOrderItem.Length < I || I < 0)
-    //        throw new IndexOutOfRangeException("Read range Error");
-    //    return DataSource.arrOrderItem[I];
-
-    //}
-
     public OrderItem GetByID(int ID)
     {
         return DataSource.searchOrderItem(ID) ?? throw new MyException("the id is null");

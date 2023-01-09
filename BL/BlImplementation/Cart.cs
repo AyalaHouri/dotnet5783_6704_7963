@@ -7,26 +7,27 @@ namespace BlImplementation
     internal class Cart : ICart //class for Implementation of functions
     {
         DalApi.IDal? _idal = DalApi.Factory.Get();
- 
-        public BO.Cart AddToCart(BO.Cart cart, int productid)//mathode in order to add product to the cart
+
+        public BO.Cart AddToCart(BO.Cart? cart, int productid)//mathode in order to add product to the cart
         {
             bool exist = false;
             DO.Product product = _idal.Product.GetByID(productid);
 
-            if (cart.Items == null)//if the cart is empty add to the cart the product
+            if (cart == null)//if the cart is empty add to the cart the product
             {
+                cart = new BO.Cart();
                 BO.OrderItem neworderitem = new BO.OrderItem();
                 neworderitem.ID = Config.get_ID_OrderItemBO;
                 neworderitem.NameOfProduct = product.NameOfProduct;
                 neworderitem.Price = product.Price;
                 neworderitem.ProductID = product.ID;
-
+                cart.Items = new List<BO.OrderItem?>();
 
                 if (product.InStoke > 0)
                 {
                     neworderitem.Amount = 1;
                     neworderitem.TotalPrice += neworderitem.Price;
-                    cart.Items = new List<BO.OrderItem?>();
+
                     cart.Items.Add(neworderitem);
                     cart.TotalPrice += neworderitem.Price;
                 }
@@ -118,7 +119,7 @@ namespace BlImplementation
         {
 
             int count = cart.Items.Count();
-            for (int i = 0; i < count; i++)
+            for (int i = count - 1; i >= 0; i--)
             {
                 cart.Items.RemoveAt(i);
             }
@@ -128,22 +129,21 @@ namespace BlImplementation
         {
             if (cart.Items == null)
                 throw new BO.ExceptionLogi("your cart is empty");
-            if (cart.CustomerAddress == null)
+            if (cart.CustomerAddress == "")
                 throw new BO.ExceptionLogi("Customer Address is missing");
-            if (cart.CustomerName == null)
+            if (cart.CustomerName == "")
                 throw new BO.ExceptionLogi("Customer name is missing");
-            if (cart.CustomerEmail == null)
+            if (cart.CustomerEmail == "")
                 throw new BO.ExceptionLogi("Customer email is missing");
-            //  if (cart.CustomerEmail.Contains("@gmail.com"))
-            //  throw new ExceptionLogi("Customer email is not valid");
-            foreach (var prod in cart.Items)
-            {
-                if (prod?.Price <= 1)
-                    throw new BO.ExceptionLogi($"The {prod.NameOfProduct} product price is invalid");
-                if (prod?.Amount < 1)
-                    throw new BO.ExceptionLogi($"The {prod.NameOfProduct} product quantity is invalid");
-            }
+            ///if (cart.CustomerEmail.Contains("@gmail.com"))
+            /// throw new BO.ExceptionLogi("Customer email is not valid");
+            if (cart.Items.FirstOrDefault(item => item?.Price <= 1) != null)
+                throw new BO.ExceptionLogi($"The {cart.Items.FirstOrDefault(item => item?.Price <= 1).NameOfProduct} product price is invalid");
+            if (cart.Items.FirstOrDefault(item => item?.Amount < 1) != null)
+                throw new BO.ExceptionLogi($"The {cart.Items.FirstOrDefault(item => item?.Price <= 1).NameOfProduct} product quantity is invalid");
+            
             DO.Order neworder = new DO.Order();
+
             neworder.CustomerAddress = cart.CustomerAddress;
             neworder.CustomerEmail = cart.CustomerEmail;
             neworder.CustomerName = cart.CustomerName;

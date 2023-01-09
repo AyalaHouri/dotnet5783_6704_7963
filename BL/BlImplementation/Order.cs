@@ -1,4 +1,6 @@
 ﻿
+using System.Linq;
+
 namespace BlImplementation
 {
     internal class Order : BlApi.IOrder
@@ -9,14 +11,14 @@ namespace BlImplementation
 
             return _idal.Order.GetTheList().Select(order =>
             {
+                int p=0;
                 IEnumerable<DO.OrderItem?> orderitems = _idal.OrderItem.GetOrderItemsByOrderId(order?.ID ?? 0);
-
                 return new BO.OrderForList
                 {
                     ID = order?.ID ?? 0,
                     CustomerName = order?.CustomerName,
                     OrderStatus = getStatus((DO.Order)order),
-                    AmountOfItems = orderitems.Count(),
+                    AmountOfItems = orderitems.Where(orderitem=> (orderitem?.ID??0)== order?.ID).Sum(orderItem=> orderItem?.Amount ?? 0),
                     TotalPrice = orderitems.Sum(orderItem => (orderItem?.Amount ?? 0) * (orderItem?.Price ?? 0)),
                 };
             });
@@ -32,7 +34,37 @@ namespace BlImplementation
             };
         }
 
+        //public BO.Order OrderDetail(int orderid)///returns the order details
+        //{
+        //    if (orderid > 0)
+        //    {
+        //        DO.Order FOrder = new DO.Order();
+        //        FOrder = exist(orderid);
+        //        IEnumerable<DO.OrderItem?> orderitems = _idal.OrderItem.GetOrderItemsByOrderId(FOrder.ID);
+        //        BO.Order order = new BO.Order();
+        //        order.ID = FOrder.ID;
+        //        order.CustomerName = FOrder.CustomerName;
+        //        order.CustomerAddress = FOrder.CustomerAddress;
+        //        order.CustomerEmail = FOrder.CustomerEmail;
+        //        order.OrderStatus = getStatus(FOrder);
+        //        BO.OrderItem titem = new BO.OrderItem();
+        //        order.Items = new List<BO.OrderItem>();
+        //        foreach (DO.OrderItem item in orderitems)
+        //        {
+        //            titem.ID = item.ID;
+        //            titem.ProductID = item.ProductID;
+        //            titem.NameOfProduct = _idal.Product.GetByID(item.ProductID).NameOfProduct;
+        //            titem.Amount = item.Amount;
+        //            titem.Price = item.Price;
 
+        //            titem.TotalPrice = orderitems?.Sum(orderItem => (orderItem?.Amount ?? 0) * (orderItem?.Price ?? 0));///calcuate the total price
+        //            order.Items.Add(titem); //order.Items = orderitems, we need to convert from DO to BO
+        //        }
+        //        order.TotalPrice = (double)order.Items.Sum(item => item.TotalPrice);
+        //        return order;
+        //    }
+        //    throw new Exception("NEGETIVE ID\n");
+        //}
         public BO.Order OrderDetail(int orderid)///returns the order details
         {
             if (orderid > 0)
@@ -47,23 +79,27 @@ namespace BlImplementation
                 order.CustomerEmail = FOrder.CustomerEmail;
                 order.OrderStatus = getStatus(FOrder);
                 order.Items = new List<BO.OrderItem>();
+                order.DeliveryDate= FOrder.DeliveryDate;
+                order.OrderDate = FOrder.OrderDate;
+                order.ShipDate = FOrder.ShipDate;
                 var v = orderitems.Select(item =>
                 {
                     return new BO.OrderItem()
                     {
                         ID = item?.ID ?? 0,
                         ProductID = item?.ProductID ?? 0,
-                        NameOfProduct = _idal.Product.GetByID(item?.ProductID??0).NameOfProduct,
+                        NameOfProduct = _idal.Product.GetByID(item?.ProductID ?? 0).NameOfProduct,
                         Amount = item?.Amount ?? 0,
                         Price = item?.Price ?? 0,
-                        TotalPrice = orderitems?.Sum(orderItem => orderItem?.Amount ?? 0 * orderItem?.Price ?? 0),
+                        TotalPrice = orderitems.Sum(orderItem => (orderItem?.Amount ?? 0) * (orderItem?.Price ?? 0)),
                     };
-                    
-                });
-                order.Items = v.ToList();
+
+                }).ToList();
+                order.Items = v;
+                order.TotalPrice = (double)order.Items.Sum(item => item.TotalPrice);
                 return order;
             }
-            throw new Exception("NEGETIVE ID\n");
+            throw new BO.ExceptionLogi("NEGETIVE ID\n");
         }
         public DO.Order exist(int orderid)///checks if the order exist and returns it
         {
@@ -114,7 +150,7 @@ namespace BlImplementation
                             NameOfProduct = _idal.Product.GetByID(item?.ProductID ?? 0).NameOfProduct,
                             Amount = item?.Amount ?? 0,
                             Price = item?.Price ?? 0,
-                            TotalPrice = orderitems?.Sum(orderItem => orderItem?.Amount ?? 0 * orderItem?.Price ?? 0),
+                            TotalPrice = orderitems?.Sum(orderItem => (orderItem?.Amount ?? 0) * (orderItem?.Price ?? 0)),
                         };
                 BOrder.Items = v.ToList();
                 return BOrder;
@@ -128,7 +164,7 @@ namespace BlImplementation
             FOrder = exist(orderid);
             if (FOrder.ShipDate != DateTime.MinValue && FOrder.DeliveryDate != DateTime.MinValue)
             {
-                throw new Exception("DID NOT ARRIVED\n");
+                throw new BO.ExceptionLogi("DID NOT ARRIVED\n");
             }
             FOrder.DeliveryDate = DateTime.Now;
             _idal.Order.Update(orderid, FOrder);//updat the data
@@ -151,7 +187,7 @@ namespace BlImplementation
                         NameOfProduct = _idal.Product.GetByID(item?.ProductID ?? 0).NameOfProduct,
                         Amount = item?.Amount ?? 0,
                         Price = item?.Price ?? 0,
-                        TotalPrice = orderitems?.Sum(orderItem => orderItem?.Amount ?? 0 * orderItem?.Price ?? 0),
+                        TotalPrice = orderitems?.Sum(orderItem => (orderItem?.Amount ?? 0) * (orderItem?.Price ?? 0)),
                     };
             BOrder.Items = v.ToList();
             return BOrder;

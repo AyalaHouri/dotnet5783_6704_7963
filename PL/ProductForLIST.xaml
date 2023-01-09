@@ -24,8 +24,11 @@ VerticalAlignment="Stretch" Width="auto" Background="#FFEBEBEB">
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox Grid.Column="1" Name="CategorySelector" HorizontalAlignment="Left" SelectionChanged="CategorySelector_SelectionChanged" SizeChanged="CategorySelector_SizeChanged" Width="400"/>
-            <Label Grid.Column="0" Content="Category" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Center"/>
+            <ComboBox Grid.Column="1" Name="CategorySelector" HorizontalAlignment="Center" SelectionChanged="CategorySelector_SelectionChanged" SizeChanged="CategorySelector_SizeChanged" Width="400">
+                <!--<ComboBox Width="120"/>-->
+            </ComboBox>
+            <Button x:Name="orderbutton" Content="order" HorizontalAlignment="Left" Margin="238,0,0,0" VerticalAlignment="Center" Height="30" Width="92" Click="orderbutton_Click"/>
+            <Button x:Name="ProductButton" Content="pruoduct" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Center" Height="30" Width="92" Click="ProductButton_Click"/>
         </Grid>
         <ListView x:Name="ProductList" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ProductList_SelectionChanged" Margin="115,119,115,124" MouseDoubleClick="ProductList_MouseDoubleClick" Grid.Row="1">
 
@@ -59,7 +62,37 @@ VerticalAlignment="Stretch" Width="auto" Background="#FFEBEBEB">
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Add new Product" Grid.Row="2" HorizontalAlignment="Right" Margin="5" Padding="5" Click="Button_Click" Background="#FF668F66"/>
+        <Button x:Name="addproduct" Content="Add new Product" Grid.Row="2" HorizontalAlignment="Right" Margin="5" Padding="5" Click="addproduct_Click" Background="#FF668F66"/>
         <Button Content="Back" HorizontalAlignment="Left" Margin="24,0,0,0" Grid.Row="2" VerticalAlignment="Center" Height="28" Width="108" Background="#FFA5D228" Click="Button_Click_2"/>
+        <ListView x:Name="orderlist" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="115,119,115,124" MouseDoubleClick="orderlist_MouseDoubleClick" SelectionChanged="orderlist_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn  DisplayMemberBinding = "{Binding Path = ID}"
+                    Header = "ID"
+                    Width = "80" />
+
+                    <GridViewColumn
+                    DisplayMemberBinding = "{Binding Path = CustomerName}"
+                    Header = " Customer Name"
+                    Width = "100" />
+
+                    <GridViewColumn
+                    DisplayMemberBinding = "{Binding Path = OrderStatus}"
+                    Header = "Status"
+                    Width = "180" />
+
+                    <GridViewColumn
+                    DisplayMemberBinding = "{Binding Path = AmountOfItems}"
+                    Header = "Amount Of Items"
+                    Width = "80" />
+
+                    <GridViewColumn
+                    DisplayMemberBinding = "{Binding Path = TotalPrice}"
+                    Header = "Total Price"
+                    Width = "80" />
+
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>

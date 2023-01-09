@@ -22,6 +22,8 @@ internal class DalProduct : IProduct
       //  product.ID = DataSource.Config.get_ID_Product;
         DataSource.LProduct.Add(product);
         DataSource.Config.I_Product++;
+        var v=DataSource.LProduct.OrderBy(item=>item?.ID);
+        DataSource.LProduct = v.ToList();
         return product.ID;
     }
 

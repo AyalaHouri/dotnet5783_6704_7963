@@ -1,0 +1,79 @@
+﻿<Window x:Class="PL.Order"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="Order" Height="450" Width="800">
+    <Grid>
+        <Label Content="Order:" HorizontalAlignment="Left" Margin="368,38,0,0" VerticalAlignment="Top" Width="136"/>
+        <Button x:Name="UpdateStock" Content="Update Stock" HorizontalAlignment="Left" Margin="643,380,0,0" VerticalAlignment="Top" Height="23" Width="104" Click="UpdateStock_Click"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="436,377,0,0" VerticalAlignment="Top" Height="26" Width="107"/>
+        <Button x:Name="back" Content="back" HorizontalAlignment="Left" Margin="224,377,0,0" VerticalAlignment="Top" Height="28" Width="100" Click="back_Click"/>
+        <Button x:Name="mainwindow" Content="Back to the main window" HorizontalAlignment="Left" Margin="22,377,0,0" VerticalAlignment="Top" Height="28" Width="143" Click="mainwindow_Click"/>
+        <Label x:Name="ID" Content="ID:" HorizontalAlignment="Left" Margin="165,85,0,0" VerticalAlignment="Top"/>
+        <Label Content="Customer name:" HorizontalAlignment="Left" Margin="165,116,0,0" VerticalAlignment="Top"/>
+        <Label Content="customer address:
+               " HorizontalAlignment="Left" Margin="164,142,0,0" VerticalAlignment="Top" Height="26" Width="110"/>
+        <Label Content="customer Email:" HorizontalAlignment="Left" Margin="165,172,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="order date:" HorizontalAlignment="Left" Margin="164,0,0,0" VerticalAlignment="Center" Width="90"/>
+        <Label Content="ship date:" HorizontalAlignment="Left" Margin="457,198,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="delivery date:" HorizontalAlignment="Left" Margin="452,89,0,0" VerticalAlignment="Top"/>
+        <Label Content="status:" HorizontalAlignment="Left" Margin="454,120,0,0" VerticalAlignment="Top"/>
+        <Label Content="total price:" HorizontalAlignment="Left" Margin="457,158,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="idla" Content="{Binding ID}" HorizontalAlignment="Left" Margin="255,85,0,0" VerticalAlignment="Top" />
+        <Label x:Name="cnla" Content="{Binding Path=CustomerName}" HorizontalAlignment="Left" Margin="274,119,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="cala" Content="{Binding Path=CustomerAddress }" HorizontalAlignment="Left" Margin="279,145,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="cela" Content="{Binding Path=CustomerEmail }" HorizontalAlignment="Left" Margin="279,172,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="odla" Content="{Binding Path=OrderDate}" HorizontalAlignment="Left" Margin="279,203,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="sdla" Content="{Binding Path=ShipDate }" HorizontalAlignment="Left" Margin="552,198,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.686,0.105"/>
+        <Label x:Name="ddla" Content="{Binding Path=DeliveryDate }" HorizontalAlignment="Left" Margin="552,89,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="statusla" Content="{Binding Path=OrderStatus }" HorizontalAlignment="Left" Margin="552,120,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="totalla" Content="{Binding Path=TotalPrice }" HorizontalAlignment="Left" Margin="552,158,0,0" VerticalAlignment="Top"/>
+        <ListView x:Name="items" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="78,246,78,83">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn  DisplayMemberBinding = "{Binding Path = ID}"
+                                
+                    Header = "ID"
+                    Width = "80" />
+
+                    <GridViewColumn
+                    DisplayMemberBinding = "{Binding Path =ProductID }"
+                    Header = "product id "
+                    Width = "100" />
+
+                    <GridViewColumn
+                    DisplayMemberBinding = "{Binding Path = NameOfProduct}"
+                    Header = "name of product"
+                    Width = "180" />
+
+                    <GridViewColumn
+                    DisplayMemberBinding = "{Binding Path =Price }"
+                    Header = "price"
+                    Width = "80" />
+
+                    <GridViewColumn
+                    DisplayMemberBinding = "{Binding Path = Amount}"
+                    Header = "Amount"
+                    Width = "80" />
+                    <GridViewColumn
+                    DisplayMemberBinding = "{Binding Path = TotalPrice}"
+                    Header = "total price"
+                    Width = "80" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="Plus" Content="+" HorizontalAlignment="Left" Margin="643,10,0,0" VerticalAlignment="Top" Background="#FFDDDDDD" FontWeight="Bold" FontSize="48" Height="75" Click="Plus_Click"/>
+        <Button x:Name="Minus" Content="-" Margin="704,10,53,349" FontSize="72" FontWeight="Bold" Click="Minus_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+
+    </Grid>
+</Window>

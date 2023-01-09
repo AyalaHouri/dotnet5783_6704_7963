@@ -11,9 +11,9 @@ internal class DalOrder : IOrder
     {
         DataSource.LOrder.Add(order);
         DataSource.Config.I_Order++;
+        var v = DataSource.LOrder.OrderBy(order => order?.ID);
+        DataSource.LOrder = v.ToList();
         return order.ID;
-
-
     }
     public void Update(int ID, Order order)
     {

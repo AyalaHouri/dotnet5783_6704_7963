@@ -46,7 +46,7 @@ namespace BlImplementation
                 BProduct.Category = (BO.Enum.category?)DProdact.Category;
                 return BProduct;
             }
-            throw new Exception("NEGETIVE ID\n");
+            throw new BO.ExceptionLogi("NEGETIVE ID\n");
         }
         public BO.ProductItem askedProductItem(int prudactid, BO.Cart cart)///returns ProductItem, build ProductItem, update it and returns it
         {

@@ -13,7 +13,7 @@ namespace BO
         public string? CustomerEmail { get; set; }
         public string? CustomerAddress { get; set; }
         public double TotalPrice { get; set; }
-        public List<OrderItem?> Items { get; set; }
+        public List<OrderItem?>? Items { get; set; }
         public override string ToString() => $@"Customer Name:{CustomerName}/n
         Customer Email:{CustomerEmail}
         Customer Address:{CustomerAddress}

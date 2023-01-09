@@ -10,12 +10,14 @@ namespace PL
     public partial class ProductForLIST : Window
     {
         private BlApi.IBl _bl = BlApi.Factory.Get();
+        static int x ;
         public ProductForLIST()
         {
             InitializeComponent();
             ProductList.ItemsSource = _bl?.Product.AskForPrudactList();
+            orderlist.ItemsSource = _bl?.Order.AskList();
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enum.category));
-            
+            orderlist.Visibility = Visibility.Hidden;
         }
      
         
@@ -37,20 +39,13 @@ namespace PL
           //CategorySelector.ItemsSource = _bl.Product.AskForCategory();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            int? x = null;
-            new Product(x).Show();
-            Close();
-            //if(new Product().ShowDialog()==false)
-            //    ProductList.ItemsSource = _bl.Product.AskForPrudactList();
-        }
+       
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            new MainWindow().ShowDialog();
-            Close();
-        }
+        //private void Button_Click_1(object sender, RoutedEventArgs e)
+        //{
+        //    new MainWindow().ShowDialog();
+        //    Close();
+        //}
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
@@ -60,9 +55,51 @@ namespace PL
 
         private void ProductList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var product = (BO.ProductForList)ProductList.SelectedItem;
-            new Product(product.ID).Show();
+            var product = _bl.Product.prudactrequest(((BO.ProductForList)ProductList.SelectedItem).ID);
+            new Product(product).Show();
             Close();
+        }
+
+        private void ProductButton_Click(object sender, RoutedEventArgs e)
+        {
+            orderlist.Visibility = Visibility.Hidden;
+           ProductList.Visibility = Visibility.Visible;
+            CategorySelector.Visibility = Visibility.Visible;
+        }
+
+        private void orderbutton_Click(object sender, RoutedEventArgs e)
+        {
+            ProductList.Visibility = Visibility.Hidden;
+            orderlist.Visibility = Visibility.Visible;
+            CategorySelector.Visibility = Visibility.Hidden;
+            
+        }
+
+        private void addproduct_Click(object sender, RoutedEventArgs e)
+        {
+            new Product().Show();
+            Close();
+
+        }
+
+        private void orderlist_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var order = (BO.OrderForList)orderlist.SelectedItem;
+            try
+            {
+                new Order(order.ID, false).Show();
+                Close();
+            }
+           
+            catch (BO.ExceptionLogi ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void orderlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

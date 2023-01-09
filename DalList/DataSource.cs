@@ -1,4 +1,5 @@
-﻿using DO;
+﻿using DalApi;
+using DO;
 using static DO.Enums;
 namespace Dal;
 
@@ -91,7 +92,6 @@ internal static class DataSource
         _orderItem.OrderID = OrderID;
         _orderItem.Price = Price;
         _orderItem.Amount = random.Next(1, 4);
-
         return _orderItem;
     }
     internal static void addProduct(Product a)
@@ -124,13 +124,7 @@ internal static class DataSource
     }
     internal static Product? searchProduct(int ID)
     {
-
-        foreach (Product? product in LProduct)
-        {
-            if (product?.ID == ID)
-                return product;
-        }
-        throw new DO.MyException("NOT FOUND\n");
+        return LProduct.FirstOrDefault(item=>item?.ID==ID)?? throw new DO.MyException("NOT FOUND\n");
 
     }
     internal static void s_Initialize()
@@ -150,7 +144,10 @@ internal static class DataSource
             p.CustomerName = CustomerName[Index];
             p.CustomerEmail = CustomerEmail[Index];
             p.CustomerAddress = CustomerAddress[Index];
-
+            p.DeliveryDate = DateTime.Now;
+            p.ShipDate = DateTime.Now;
+            p.OrderDate = p.ShipDate + new TimeSpan(random.Next(0, 7), random.Next(0, 59), random.Next(0, 59), random.Next(0, 59));
+            p.DeliveryDate = p.ShipDate + new TimeSpan(random.Next(0, 7), random.Next(0, 59), random.Next(0, 59), random.Next(0, 59));
             p.ID = Config.get_ID_Order;
             LOrder.Add(p);
         }
