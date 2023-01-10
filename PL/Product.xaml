@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="Product" Height="450" Width="800">
-    <Grid>
+    <Grid Margin="0,0,0,-6">
         <Grid.Background>
             <ImageBrush ImageSource="/Screenshot 2022-12-13 121650.png"/>
         </Grid.Background>
@@ -23,7 +23,7 @@
         <Button x:Name="addbutton" Content="ADD" HorizontalAlignment="Left" Margin="255,337,0,0" VerticalAlignment="Top" Height="24" Width="187" Background="#FFADF964" Click="Button_Click">
 
         </Button>
-        <Button Content="Back" HorizontalAlignment="Left" Margin="255,388,0,0" VerticalAlignment="Top" Width="187" Height="27" Background="#FFB7F067" Click="Button_Click_1"/>
+        <Button x:Name="back" Content="Back" HorizontalAlignment="Left" Margin="255,388,0,0" VerticalAlignment="Top" Width="187" Height="27" Background="#FFB7F067" Click="Button_Click_1"/>
         <Label x:Name="TextBoxLable" Content="update or add" HorizontalAlignment="Left" Margin="306,10,0,0" VerticalAlignment="Top"/>
         <Button x:Name="updatebutton" Content="Update" HorizontalAlignment="Left" Margin="327,341,0,0" VerticalAlignment="Top" Background="#FFADF964" Click="updatebutton_Click"/>
         <Button x:Name="addtocart" Content="Add to cart" HorizontalAlignment="Left" Margin="254,334,0,0" VerticalAlignment="Top" Height="34" Width="188" Click="addtocart_Click" BorderBrush="#FFA3F175" Background="#FF9BE267"/>
@@ -31,6 +31,7 @@
         <Label x:Name="labelname" Content="" HorizontalAlignment="Left" Margin="275,115,0,0" VerticalAlignment="Top" Width="146"/>
         <Label x:Name="labelcategory" Content="" HorizontalAlignment="Left" Margin="255,178,0,0" VerticalAlignment="Top" Width="187"/>
         <Label x:Name="labelprice" Content="" HorizontalAlignment="Left" Margin="255,226,0,0" VerticalAlignment="Top" Width="187"/>
+        <Button x:Name="cartback" Content="Back" HorizontalAlignment="Left" Margin="510,387,0,0" VerticalAlignment="Top" Width="78" Click="cartback_Click"/>
 
     </Grid>
 </Window>

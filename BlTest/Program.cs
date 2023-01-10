@@ -42,7 +42,7 @@ partial class Program
                     case 'c':
                         Console.WriteLine("Enter the order ID\n");
                         int.TryParse(Console.ReadLine(), out idtemp);
-                        Console.Write(bl.Order.orderupdat(idtemp));
+                        Console.Write(bl.Order.ordershipdateupdate(idtemp));
                         break;
                     case 'd':
                         Console.WriteLine("Enter the order ID\n");

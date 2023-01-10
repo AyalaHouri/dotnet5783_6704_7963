@@ -14,11 +14,13 @@ namespace PL
     {
         private BlApi.IBl _bl = BlApi.Factory.Get();
         public event PropertyChangedEventHandler PropertyChanged;/// <summary>
-                                                                 /// we add inotify-propertychange
-                                                                 /// 
+        BO.Cart caart;                                                      /// we add inotify-propertychange
+                                                                            /// 
         public Product(BO.ProductForList prod, BO.Cart cart)
         {
             InitializeComponent();
+            cartback.Visibility = Visibility.Visible;
+            back.Visibility = Visibility.Hidden;
             //ProductObservableCollection = new ObservableCollection<BO.Product> { _bl.Product.prudactrequest(prod.ID) };///input all the data of the product
             updatebutton.Visibility = Visibility.Hidden;
             addbutton.Visibility = Visibility.Hidden;
@@ -35,15 +37,20 @@ namespace PL
             labelid.Content = prod.ID.ToString();
             cartt = cart;
             x = prod.ID;
+            caart = cart;
+
 
         }
 
         public Product(BO.Product product)
         {
             InitializeComponent();
+            IDtb.IsEnabled = false;
+            cartback.Visibility = Visibility.Hidden;
+            back.Visibility = Visibility.Visible;
             Categorycb.ItemsSource = Enum.GetValues(typeof(BO.Enum.category));
             //IDtb.Text = ProductObservableCollection[0].ID.ToString();
-            DataContext= product;
+            DataContext = product;
             labelcategory.Visibility = Visibility.Hidden;
             labelname.Visibility = Visibility.Hidden;
             labelprice.Visibility = Visibility.Hidden;
@@ -70,7 +77,7 @@ namespace PL
         }
 
         private ObservableCollection<BO.Product> _ProductObservableCollection;/// <summary>
-        /// observes colection we save the data
+                                                                              /// observes colection we save the data
         public ObservableCollection<BO.Product> ProductObservableCollection///to protect the data
         {
             get { return _ProductObservableCollection; }
@@ -87,8 +94,8 @@ namespace PL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            BO.Product product= new BO.Product();
-            IDtb.IsEnabled= false;
+            BO.Product product = new BO.Product();
+            IDtb.IsEnabled = false;
             int.TryParse(IDtb.Text, out int id);
             product.ID = id;
             product.NameOfProduct = Nametb.Text;
@@ -97,31 +104,31 @@ namespace PL
             int.TryParse(Amount.Text, out int amount);
             product.InStoke = amount;
             product.Category = (BO.Enum.category?)Categorycb.SelectedItem;
-   
-            
-                try
-                {
-                
+
+
+            try
+            {
+
                 _bl.Product.AddProduct(product);
-                }
-                catch(BO.ExceptionLogi ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (DO.MyException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+            }
+            catch (BO.ExceptionLogi ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.Cancel);
+            }
+            catch (DO.MyException ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.Cancel);
+            }
 
 
 
 
             new ProductForLIST().Show();
             Close();
-            
+
         }
 
-       
+
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             new ProductForLIST().Show();
@@ -150,11 +157,11 @@ namespace PL
             }
             catch (BO.ExceptionLogi ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "error", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.Cancel);
             }
             catch (DO.MyException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "error", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.Cancel);
             }
             new ProductForLIST().Show();
             Close();
@@ -169,9 +176,15 @@ namespace PL
             }
             catch (BO.ExceptionLogi ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "error", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.Cancel);
             }
             new Katalog(cartt).Show();
+            Close();
+        }
+
+        private void cartback_Click(object sender, RoutedEventArgs e)
+        {
+            new ProductForLIST().Show();
             Close();
         }
     }

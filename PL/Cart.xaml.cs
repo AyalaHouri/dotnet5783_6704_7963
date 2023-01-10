@@ -20,7 +20,7 @@ namespace PL
     public partial class Cart : Window
     {
         private BlApi.IBl _bl = BlApi.Factory.Get();
-        static BO.Cart? cartpl;
+        static BO.Cart? cartpl { get; set; }
         public Cart(BO.Cart cart)
         {
             InitializeComponent();
@@ -33,16 +33,17 @@ namespace PL
             finish.Visibility = Visibility.Hidden;
             try
             {
-                if (cart != null)
+                if (cart != null&&cart.Items.Count()!=0)
                 {
-                    cartview.ItemsSource = cart.Items;
+                    // cartview.ItemsSource = cart.Items;
                     empty.Visibility = Visibility.Hidden;
                     cartpl = cart;
+                    DataContext = cartpl;
                 }
                 else
                 {
                     cartview.Visibility = Visibility.Hidden;
-
+                    aproveorder.IsEnabled = false;
                 }
             }
             catch (BO.ExceptionLogi ex)
@@ -50,13 +51,13 @@ namespace PL
                 MessageBox.Show(ex.Message);
             }
 
-           
+
 
         }
 
         private void cartview_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            
+
         }
 
         private void aproveorder_Click(object sender, RoutedEventArgs e)
@@ -70,9 +71,6 @@ namespace PL
             adresslab.Visibility = Visibility.Visible;
             emailbox.Visibility = Visibility.Visible;
             emailab.Visibility = Visibility.Visible;
-            cartpl.CustomerName = namebox.Text;
-            cartpl.CustomerEmail = emailbox.Text;
-            cartpl.CustomerAddress = adresbox.Text;
             aproveorder.Visibility = Visibility.Hidden;
             finish.Visibility = Visibility.Visible;
         }
@@ -80,12 +78,11 @@ namespace PL
         private void finish_Click(object sender, RoutedEventArgs e)
         {
             aproveorder.Visibility = Visibility.Hidden;
-          //  DataContext=
             try { _bl.Cart.AproveOrder(cartpl); }
 
             catch (BO.ExceptionLogi ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "error", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.Cancel);
                 aproveorder_Click(sender, e);
             }
             new MainWindow().Show();
@@ -98,5 +95,38 @@ namespace PL
             new Katalog().Show();
             Close();
         }
+        private void Decrease_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = (sender as Button);
+                ///BO.ProductForList p = (sender as Button).DataContext as BO.ProductForList;
+                cartpl=_bl.Cart.UpdateAmount(cartpl, (int)button.Tag,-1);
+                cartview.Items.Refresh();
+
+            }
+            catch (BO.ExceptionLogi ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.Cancel);
+            }
+
+        }
+        private void Increase_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = (sender as Button);
+                ///BO.ProductForList p = (sender as Button).DataContext as BO.ProductForList;
+                cartpl=_bl.Cart.AddToCart(cartpl,(int)button.Tag);
+                DataContext=cartpl;
+                cartview.Items.Refresh();
+            }
+            catch (BO.ExceptionLogi ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.Cancel);
+            }
+
+        }
+
     }
 }

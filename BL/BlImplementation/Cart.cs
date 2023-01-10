@@ -1,5 +1,4 @@
-﻿
-using BlApi;
+﻿using BlApi;
 using System.Linq;
 
 namespace BlImplementation
@@ -84,10 +83,13 @@ namespace BlImplementation
                 throw new BO.ExceptionLogi("your cart is empty");
             }
 
+
             exist = cart.Items.Any(prod => prod?.ProductID == productid);
+
             if (exist)
             {
                 var matchingProduct = cart.Items.First(prod => prod.ProductID == productid);
+                newAmount = matchingProduct.Amount + newAmount;
                 if (matchingProduct.Amount < newAmount)
                 {
                     while (matchingProduct.Amount != newAmount)
@@ -96,18 +98,21 @@ namespace BlImplementation
                     }
                 }
                 if (matchingProduct.Amount > newAmount)
-                {
-                    if (matchingProduct.Amount == 1)
+                    while (matchingProduct.Amount != newAmount)
                     {
-                        cart.TotalPrice -= matchingProduct.Price;
-                        cart.Items.Remove(matchingProduct);
+                        if (matchingProduct.Amount == 1)
+                        {
+                            matchingProduct.Amount--;
+
+                            cart.TotalPrice -= matchingProduct.Price;
+                            cart.Items.Remove(matchingProduct);
+                        }
+                        else
+                        {
+                            matchingProduct.Amount--;
+                            cart.TotalPrice -= matchingProduct.Price;
+                        }
                     }
-                    else
-                    {
-                        matchingProduct.Amount--;
-                        cart.TotalPrice -= matchingProduct.Price;
-                    }
-                }
             }
             if (!exist)
             {
@@ -141,7 +146,7 @@ namespace BlImplementation
                 throw new BO.ExceptionLogi($"The {cart.Items.FirstOrDefault(item => item?.Price <= 1).NameOfProduct} product price is invalid");
             if (cart.Items.FirstOrDefault(item => item?.Amount < 1) != null)
                 throw new BO.ExceptionLogi($"The {cart.Items.FirstOrDefault(item => item?.Price <= 1).NameOfProduct} product quantity is invalid");
-            
+
             DO.Order neworder = new DO.Order();
 
             neworder.CustomerAddress = cart.CustomerAddress;
@@ -173,6 +178,7 @@ namespace BlImplementation
 
             DeletAll(cart);
         }
+
 
 
     }

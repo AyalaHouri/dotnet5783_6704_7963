@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        DataContext="{Binding RelativeSource={RelativeSource self}}"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="ProductForLIST" Height="640" Width="800">
@@ -30,7 +31,7 @@ VerticalAlignment="Stretch" Width="auto" Background="#FFEBEBEB">
             <Button x:Name="orderbutton" Content="order" HorizontalAlignment="Left" Margin="238,0,0,0" VerticalAlignment="Center" Height="30" Width="92" Click="orderbutton_Click"/>
             <Button x:Name="ProductButton" Content="pruoduct" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Center" Height="30" Width="92" Click="ProductButton_Click"/>
         </Grid>
-        <ListView x:Name="ProductList" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ProductList_SelectionChanged" Margin="115,119,115,124" MouseDoubleClick="ProductList_MouseDoubleClick" Grid.Row="1">
+        <ListView x:Name="ProductList" SelectionChanged="ProductList_SelectionChanged" Margin="115,119,115,124" MouseDoubleClick="ProductList_MouseDoubleClick" Grid.Row="1">
 
             <ListView.Background>
                 <ImageBrush ImageSource="/Screenshot 2022-12-13 121650.png"/>

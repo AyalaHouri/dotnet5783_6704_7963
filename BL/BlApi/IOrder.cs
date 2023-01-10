@@ -14,8 +14,9 @@ namespace BlApi
         IEnumerable<OrderForList?> AskList();
         public BO.Order OrderDetail(int orderid);
 
-        public BO.Order orderupdat(int orderid);
+        public BO.Order ordershipdateupdate(int orderid);
         public BO.Order UpdateStock(int orderid);
         public BO.OrderTracking OrderTrackingFunc(int orderid);
+        public BO.Order UpDate(int orderID, int productID, int plus_minus);
     }
 }

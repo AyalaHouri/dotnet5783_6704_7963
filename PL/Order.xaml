@@ -8,8 +8,6 @@
         Title="Order" Height="450" Width="800">
     <Grid>
         <Label Content="Order:" HorizontalAlignment="Left" Margin="368,38,0,0" VerticalAlignment="Top" Width="136"/>
-        <Button x:Name="UpdateStock" Content="Update Stock" HorizontalAlignment="Left" Margin="643,380,0,0" VerticalAlignment="Top" Height="23" Width="104" Click="UpdateStock_Click"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="436,377,0,0" VerticalAlignment="Top" Height="26" Width="107"/>
         <Button x:Name="back" Content="back" HorizontalAlignment="Left" Margin="224,377,0,0" VerticalAlignment="Top" Height="28" Width="100" Click="back_Click"/>
         <Button x:Name="mainwindow" Content="Back to the main window" HorizontalAlignment="Left" Margin="22,377,0,0" VerticalAlignment="Top" Height="28" Width="143" Click="mainwindow_Click"/>
         <Label x:Name="ID" Content="ID:" HorizontalAlignment="Left" Margin="165,85,0,0" VerticalAlignment="Top"/>
@@ -22,16 +20,16 @@
         <Label Content="delivery date:" HorizontalAlignment="Left" Margin="452,89,0,0" VerticalAlignment="Top"/>
         <Label Content="status:" HorizontalAlignment="Left" Margin="454,120,0,0" VerticalAlignment="Top"/>
         <Label Content="total price:" HorizontalAlignment="Left" Margin="457,158,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="idla" Content="{Binding ID}" HorizontalAlignment="Left" Margin="255,85,0,0" VerticalAlignment="Top" />
+        <Label x:Name="idla" Content="{Binding Path=ID}" HorizontalAlignment="Left" Margin="255,85,0,0" VerticalAlignment="Top" />
         <Label x:Name="cnla" Content="{Binding Path=CustomerName}" HorizontalAlignment="Left" Margin="274,119,0,0" VerticalAlignment="Top"/>
         <Label x:Name="cala" Content="{Binding Path=CustomerAddress }" HorizontalAlignment="Left" Margin="279,145,0,0" VerticalAlignment="Top"/>
         <Label x:Name="cela" Content="{Binding Path=CustomerEmail }" HorizontalAlignment="Left" Margin="279,172,0,0" VerticalAlignment="Top"/>
         <Label x:Name="odla" Content="{Binding Path=OrderDate}" HorizontalAlignment="Left" Margin="279,203,0,0" VerticalAlignment="Top"/>
         <Label x:Name="sdla" Content="{Binding Path=ShipDate }" HorizontalAlignment="Left" Margin="552,198,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.686,0.105"/>
-        <Label x:Name="ddla" Content="{Binding Path=DeliveryDate }" HorizontalAlignment="Left" Margin="552,89,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="ddla" Content="{Binding DeliveryDate }" HorizontalAlignment="Left" Margin="552,89,0,0" VerticalAlignment="Top"/>
         <Label x:Name="statusla" Content="{Binding Path=OrderStatus }" HorizontalAlignment="Left" Margin="552,120,0,0" VerticalAlignment="Top"/>
         <Label x:Name="totalla" Content="{Binding Path=TotalPrice }" HorizontalAlignment="Left" Margin="552,158,0,0" VerticalAlignment="Top"/>
-        <ListView x:Name="items" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="78,246,78,83">
+        <ListView x:Name="items" d:ItemsSource="{Binding Items}" Margin="78,246,78,83">
             <ListView.View>
                 <GridView>
                     <GridViewColumn  DisplayMemberBinding = "{Binding Path = ID}"
@@ -62,18 +60,26 @@
                     DisplayMemberBinding = "{Binding Path = TotalPrice}"
                     Header = "total price"
                     Width = "80" />
+                    <!--<GridViewColumn Header = "Add" Width = "80">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="+" Click="Increase"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header = "Minus" Width = "80">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="-" Click="Dencrease"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>-->
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="Plus" Content="+" HorizontalAlignment="Left" Margin="643,10,0,0" VerticalAlignment="Top" Background="#FFDDDDDD" FontWeight="Bold" FontSize="48" Height="75" Click="Plus_Click"/>
-        <Button x:Name="Minus" Content="-" Margin="704,10,53,349" FontSize="72" FontWeight="Bold" Click="Minus_Click">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black"/>
-                    <GradientStop Color="White" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
+        <Button Name="Shipped" Content="Shipped" HorizontalAlignment="Left" Margin="638,201,0,0" VerticalAlignment="Top" Height="19" Width="60" Click="Shipped_Click"/>
+        <Button Name="Deliverd" Content="delivered" HorizontalAlignment="Left" Margin="638,94,0,0" VerticalAlignment="Top" Width="59" Height="17" Click="Deliverd_Click"/>
+        <Button Content="Back" Name="Backtotrack" Margin="635,372,23,24" Click="Backtotrack_Click"/>
 
     </Grid>
 </Window>

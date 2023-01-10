@@ -144,10 +144,10 @@ internal static class DataSource
             p.CustomerName = CustomerName[Index];
             p.CustomerEmail = CustomerEmail[Index];
             p.CustomerAddress = CustomerAddress[Index];
-            p.DeliveryDate = DateTime.Now;
-            p.ShipDate = DateTime.Now;
-            p.OrderDate = p.ShipDate + new TimeSpan(random.Next(0, 7), random.Next(0, 59), random.Next(0, 59), random.Next(0, 59));
-            p.DeliveryDate = p.ShipDate + new TimeSpan(random.Next(0, 7), random.Next(0, 59), random.Next(0, 59), random.Next(0, 59));
+            //p.DeliveryDate = DateTime.Now;
+            p.OrderDate = DateTime.Now;
+            p.DeliveryDate = DateTime.Now + new TimeSpan(random.Next(0, 7), random.Next(0, 59), random.Next(0, 59), random.Next(0, 59));
+            p.ShipDate = p.DeliveryDate + new TimeSpan(random.Next(0, 7), random.Next(0, 59), random.Next(0, 59), random.Next(0, 59));
             p.ID = Config.get_ID_Order;
             LOrder.Add(p);
         }
