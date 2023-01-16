@@ -13,14 +13,14 @@ namespace BlImplementation
 
             return _idal.Order.GetTheList().Select(order =>
             {
-                int p=0;
+                int p = 0;
                 IEnumerable<DO.OrderItem?> orderitems = _idal.OrderItem.GetOrderItemsByOrderId(order?.ID ?? 0);
                 return new BO.OrderForList
                 {
                     ID = order?.ID ?? 0,
                     CustomerName = order?.CustomerName,
                     OrderStatus = getStatus((DO.Order)order),
-                    AmountOfItems = orderitems.Where(orderitem=> (orderitem?.ID??0)== order?.ID).Sum(orderItem=> orderItem?.Amount ?? 0),
+                    AmountOfItems = orderitems.Where(orderitem => (orderitem?.ID ?? 0) == order?.ID).Sum(orderItem => orderItem?.Amount ?? 0),
                     TotalPrice = orderitems.Sum(orderItem => (orderItem?.Amount ?? 0) * (orderItem?.Price ?? 0)),
                 };
             });
@@ -48,7 +48,7 @@ namespace BlImplementation
         {
             if (order.DeliveryDate < DateTime.Now)
                 return BO.Enum.status.deliveredToCustomer;
-            if(order.ShipDate < DateTime.Now)
+            if (order.ShipDate < DateTime.Now)
                 return BO.Enum.status.shipped;
             return BO.Enum.status.OrderConfirmed;
         }
@@ -97,7 +97,7 @@ namespace BlImplementation
                 order.CustomerEmail = FOrder.CustomerEmail;
                 order.OrderStatus = getStatus(FOrder);
                 order.Items = new List<BO.OrderItem>();
-                order.DeliveryDate= FOrder.DeliveryDate;
+                order.DeliveryDate = FOrder.DeliveryDate;
                 order.OrderDate = FOrder.OrderDate;
                 order.ShipDate = FOrder.ShipDate;
                 var v = orderitems.Select(item =>
@@ -123,7 +123,7 @@ namespace BlImplementation
         {
             DO.Order FOrder = new DO.Order();
             IEnumerable<DO.Order?> lorder = _idal.Order.GetTheList();
-            return lorder.FirstOrDefault(item => item?.ID == orderid)?? throw new BO.ExceptionLogi("THE ID IS NOT EXIST\n");
+            return lorder.FirstOrDefault(item => item?.ID == orderid) ?? throw new BO.ExceptionLogi("THE ID IS NOT EXIST\n");
         }
         public BO.Order ordershipdateupdate(int orderid)///updait the shipping date
         {
@@ -177,7 +177,7 @@ namespace BlImplementation
             }
             throw new Exception("NEGETIVE ID\n");
         }
-        
+
         public BO.Order UpdateStock(int orderid)///update the stoke of the order
 
         {
@@ -237,9 +237,9 @@ namespace BlImplementation
             orderTracking.OrderStatus = getStatus(FOrder);
             orderTracking.ID = orderid;
             orderTracking.Tracking = new List<Tuple<DateTime, BO.Enum.status>>();
-            orderTracking.Tracking.Add(new Tuple<DateTime, BO.Enum.status>((DateTime?)FOrder.OrderDate??DateTime.Now, BO.Enum.status.OrderConfirmed));
-            orderTracking.Tracking.Add(new Tuple<DateTime, BO.Enum.status>((DateTime?)FOrder.DeliveryDate??DateTime.Now, BO.Enum.status.deliveredToCustomer));
-            orderTracking.Tracking.Add(new Tuple<DateTime, BO.Enum.status>((DateTime?)FOrder.ShipDate?? DateTime.Now, BO.Enum.status.shipped));
+            orderTracking.Tracking.Add(new Tuple<DateTime, BO.Enum.status>((DateTime?)FOrder.OrderDate ?? DateTime.Now, BO.Enum.status.OrderConfirmed));
+            orderTracking.Tracking.Add(new Tuple<DateTime, BO.Enum.status>((DateTime?)FOrder.DeliveryDate ?? DateTime.Now, BO.Enum.status.deliveredToCustomer));
+            orderTracking.Tracking.Add(new Tuple<DateTime, BO.Enum.status>((DateTime?)FOrder.ShipDate ?? DateTime.Now, BO.Enum.status.shipped));
             return orderTracking;
         }
         //public void UpDate(BO.Order order, char tav)
@@ -252,7 +252,7 @@ namespace BlImplementation
         //        var OI =orderitems.FirstOrDefault(item => item?.OrderID == order.ID);
         //        OI?.Amount += 1;
         //        _idal.OrderItem.Update(order.ID,orderItem);
-                
+
         //    }
 
         //}
@@ -290,7 +290,7 @@ namespace BlImplementation
                             orderUpdate.TotalPrice += itemToUpdate.Price * plus_minus;
                             itemToUpdate.Amount += plus_minus;
 
-                            _idal.OrderItem.Update(orderID,new() { ID = (int)idFind?.ID, ProductID = itemToUpdate.ProductID, Amount = itemToUpdate.Amount, Price = itemToUpdate.Price, OrderID = orderID });
+                            _idal.OrderItem.Update(orderID, new() { ID = (int)idFind?.ID, ProductID = itemToUpdate.ProductID, Amount = itemToUpdate.Amount, Price = itemToUpdate.Price, OrderID = orderID });
                         }
                     }
 
@@ -299,12 +299,16 @@ namespace BlImplementation
                 }
                 else
                 {
-                    throw new ExceptionLogi("order don't exist\n");
+                    if (productID < 0)
+                        throw new ExceptionLogi("THE PRODUCT ID IS NEGETIVE\n");
+                    if (orderID < 0)
+                        throw new ExceptionLogi("THE ORDER ID IS NEGETIVE\n");
+                    throw new ExceptionLogi("THE ORDER DOES NOT EXIST\n");
                 }
             }
             catch (DO.MyException)
             {
-                throw new ExceptionLogi("IDWhoException was throw\n");
+                throw new ExceptionLogi("IDWhoException was throw \n");
             }
         }
     }
