@@ -105,12 +105,12 @@ internal static class DataSource
 
     internal static Order? searchOrder(int? ID)
     {
-        foreach (Order? order in LOrder)
-        {
-            if (order?.ID == ID)
-                return order;
-        }
-        throw new DO.MyException("NOT FOUND\n");
+        //foreach (Order? order in LOrder)
+        //{
+        //    if (order?.ID == ID)
+        //        return order;
+        //}
+        return LOrder.FirstOrDefault(order=> order?.ID == ID)?? throw new DO.MyException("NOT FOUND\n");
     }
     internal static OrderItem? searchOrderItem(int ID)
     {

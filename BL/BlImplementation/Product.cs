@@ -134,7 +134,7 @@ namespace BlImplementation
         {
             List<BO.ProductForList?> productsForList = new List<BO.ProductForList?>();
             List<DO.Product?> products = new List<DO.Product?>();
-            products = (List<DO.Product?>)_idal.Product.GetTheList();
+            products = _idal.Product.GetTheList().ToList();
             if (func != null)
             {
                 return products.Where(product => func(product)).Select(product =>
