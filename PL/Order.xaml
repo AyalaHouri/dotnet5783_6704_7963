@@ -7,33 +7,54 @@
         mc:Ignorable="d"
         Title="Order" Height="450" Width="800">
     <Grid>
-        <Label Content="Order:" HorizontalAlignment="Left" Margin="368,38,0,0" VerticalAlignment="Top" Width="136"/>
-        <Button x:Name="back" Content="back" HorizontalAlignment="Left" Margin="224,377,0,0" VerticalAlignment="Top" Height="28" Width="100" Click="back_Click"/>
-        <Button x:Name="mainwindow" Content="Back to the main window" HorizontalAlignment="Left" Margin="22,377,0,0" VerticalAlignment="Top" Height="28" Width="143" Click="mainwindow_Click"/>
-        <Label x:Name="ID" Content="ID:" HorizontalAlignment="Left" Margin="165,85,0,0" VerticalAlignment="Top"/>
-        <Label Content="Customer name:" HorizontalAlignment="Left" Margin="165,116,0,0" VerticalAlignment="Top"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Screenshot 2022-12-13 121650.png"/>
+        </Grid.Background>
+        <Label Content="ORDER" HorizontalAlignment="Left" Margin="374,10,0,0" VerticalAlignment="Top" Width="136" FontSize="22" FontWeight="Bold"/>
+        <Button x:Name="back" Content="back" HorizontalAlignment="Left" Margin="224,377,0,0" VerticalAlignment="Top" Height="28" Width="100" Click="back_Click" BorderBrush="#FF4EB620">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF5A8655"/>
+                    <GradientStop Color="#FF267A1C" Offset="1"/>
+                    <GradientStop Color="#FF46833F" Offset="0.35"/>
+                    <GradientStop Color="#FF429939" Offset="0.714"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="mainwindow" Content="Back to the main window" HorizontalAlignment="Left" Margin="22,377,0,0" VerticalAlignment="Top" Height="28" Width="143" Click="mainwindow_Click" BorderBrush="#FF4EB620">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF5A8655"/>
+                    <GradientStop Color="#FF267A1C" Offset="1"/>
+                    <GradientStop Color="#FF46833F" Offset="0.35"/>
+                    <GradientStop Color="#FF429939" Offset="0.714"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Label x:Name="ID" Content="ID:" HorizontalAlignment="Left" Margin="165,77,0,0" VerticalAlignment="Top" Background="#FFBCCE77" Width="109"/>
+        <Label Content="Customer name:" HorizontalAlignment="Left" Margin="165,111,0,0" VerticalAlignment="Top" Background="#FFBCCE77" Height="26" Width="109"/>
         <Label Content="customer address:
-               " HorizontalAlignment="Left" Margin="164,142,0,0" VerticalAlignment="Top" Height="26" Width="110"/>
-        <Label Content="customer Email:" HorizontalAlignment="Left" Margin="165,172,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="order date:" HorizontalAlignment="Left" Margin="164,0,0,0" VerticalAlignment="Center" Width="90"/>
-        <Label Content="ship date:" HorizontalAlignment="Left" Margin="457,198,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="delivery date:" HorizontalAlignment="Left" Margin="452,89,0,0" VerticalAlignment="Top"/>
-        <Label Content="status:" HorizontalAlignment="Left" Margin="454,120,0,0" VerticalAlignment="Top"/>
-        <Label Content="total price:" HorizontalAlignment="Left" Margin="457,158,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="idla" Content="{Binding Path=ID}" HorizontalAlignment="Left" Margin="255,85,0,0" VerticalAlignment="Top" />
-        <Label x:Name="cnla" Content="{Binding Path=CustomerName}" HorizontalAlignment="Left" Margin="274,119,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="cala" Content="{Binding Path=CustomerAddress }" HorizontalAlignment="Left" Margin="279,145,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="cela" Content="{Binding Path=CustomerEmail }" HorizontalAlignment="Left" Margin="279,172,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="odla" Content="{Binding Path=OrderDate}" HorizontalAlignment="Left" Margin="279,203,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="sdla" Content="{Binding Path=ShipDate }" HorizontalAlignment="Left" Margin="552,198,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.686,0.105"/>
-        <Label x:Name="ddla" Content="{Binding DeliveryDate }" HorizontalAlignment="Left" Margin="552,89,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="statusla" Content="{Binding Path=OrderStatus }" HorizontalAlignment="Left" Margin="552,120,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="totalla" Content="{Binding Path=TotalPrice }" HorizontalAlignment="Left" Margin="552,158,0,0" VerticalAlignment="Top"/>
-        <ListView x:Name="items" d:ItemsSource="{Binding Items}" Margin="78,246,78,83">
+               " HorizontalAlignment="Left" Margin="164,142,0,0" VerticalAlignment="Top" Height="26" Width="110" Background="#FFBCCE77"/>
+        <Label Content="customer Email:" HorizontalAlignment="Left" Margin="165,172,0,0" VerticalAlignment="Top" Width="109" Background="#FFBCCE77"/>
+        <Label Content="order date:" HorizontalAlignment="Left" Margin="164,0,0,0" VerticalAlignment="Center" Width="110" Background="#FFBCCE77"/>
+        <Label Content="ship date:" HorizontalAlignment="Left" Margin="457,194,0,0" VerticalAlignment="Top" Width="76" Background="#FFBCCE77"/>
+        <Label Content="delivery date:" HorizontalAlignment="Left" Margin="452,89,0,0" VerticalAlignment="Top" Background="#FFBCCE77"/>
+        <Label Content="status:" HorizontalAlignment="Left" Margin="454,120,0,0" VerticalAlignment="Top" Background="#FFBCCE77" Width="79"/>
+        <Label Content="total price:" HorizontalAlignment="Left" Margin="457,158,0,0" VerticalAlignment="Top" Background="#FFBCCE77" Width="76"/>
+        <Label x:Name="idla" Content="{Binding Path=ID}" HorizontalAlignment="Left" Margin="279,76,0,0" VerticalAlignment="Top" Background="#FFBCCE77" Height="26" Width="110" />
+        <Label x:Name="cnla" Content="{Binding Path=CustomerName}" HorizontalAlignment="Left" Margin="279,111,0,0" VerticalAlignment="Top" Background="#FFBCCE77" Height="26" Width="110"/>
+        <Label x:Name="cala" Content="{Binding Path=CustomerAddress }" HorizontalAlignment="Left" Margin="279,141,0,0" VerticalAlignment="Top" Height="26" Width="110" Background="#FFBCCE77"/>
+        <Label x:Name="cela" Content="{Binding Path=CustomerEmail }" HorizontalAlignment="Left" Margin="279,172,0,0" VerticalAlignment="Top" Height="26" Width="110" Background="#FFBCCE77"/>
+        <Label x:Name="odla" Content="{Binding Path=OrderDate}" HorizontalAlignment="Left" Margin="279,0,0,0" VerticalAlignment="Center" Height="26" Width="110" Background="#FFBCCE77"/>
+        <Label x:Name="sdla" Content="{Binding Path=ShipDate }" HorizontalAlignment="Left" Margin="552,195,0,0" VerticalAlignment="Top" Height="26" Width="110" RenderTransformOrigin="-0.686,0.105" Background="#FFBCCE77"/>
+        <Label x:Name="ddla" Content="{Binding DeliveryDate }" HorizontalAlignment="Left" Margin="552,89,0,0" VerticalAlignment="Top" Height="26" Width="110" Background="#FFBCCE77"/>
+        <Label x:Name="statusla" Content="{Binding Path=OrderStatus }" HorizontalAlignment="Left" Margin="552,120,0,0" VerticalAlignment="Top" Height="26" Width="110" Background="#FFBCCE77"/>
+        <Label x:Name="totalla" Content="{Binding Path=TotalPrice }" HorizontalAlignment="Left" Margin="552,158,0,0" VerticalAlignment="Top" Height="26" Width="110" Background="#FFBCCE77"/>
+        <ListView x:Name="items" d:ItemsSource="{Binding Items}" Margin="78,246,78,83" Background="#FF84BD47">
             <ListView.View>
                 <GridView>
                     <GridViewColumn  DisplayMemberBinding = "{Binding Path = ID}"
-                                
+                        
                     Header = "ID"
                     Width = "80" />
 
@@ -77,9 +98,36 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Name="Shipped" Content="Shipped" HorizontalAlignment="Left" Margin="638,201,0,0" VerticalAlignment="Top" Height="19" Width="60" Click="Shipped_Click"/>
-        <Button Name="Deliverd" Content="delivered" HorizontalAlignment="Left" Margin="638,94,0,0" VerticalAlignment="Top" Width="59" Height="17" Click="Deliverd_Click"/>
-        <Button Content="Back" Name="Backtotrack" Margin="635,372,23,24" Click="Backtotrack_Click"/>
+        <Button Name="Shipped" Content="Shipped" HorizontalAlignment="Left" Margin="684,202,0,0" VerticalAlignment="Top" Height="19" Width="60" Click="Shipped_Click" BorderBrush="#FF4EB620">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF5A8655"/>
+                    <GradientStop Color="#FF267A1C" Offset="1"/>
+                    <GradientStop Color="#FF46833F" Offset="0.35"/>
+                    <GradientStop Color="#FF429939" Offset="0.714"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Name="Deliverd" Content="delivered" HorizontalAlignment="Left" Margin="676,94,0,0" VerticalAlignment="Top" Width="60" Height="17" Click="Deliverd_Click" BorderBrush="#FF4EB620">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF5A8655"/>
+                    <GradientStop Color="#FF267A1C" Offset="1"/>
+                    <GradientStop Color="#FF46833F" Offset="0.35"/>
+                    <GradientStop Color="#FF429939" Offset="0.714"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Back" Name="Backtotrack" Margin="635,372,23,24" Click="Backtotrack_Click" BorderBrush="#FF4EB620">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF5A8655"/>
+                    <GradientStop Color="#FF267A1C" Offset="1"/>
+                    <GradientStop Color="#FF46833F" Offset="0.35"/>
+                    <GradientStop Color="#FF429939" Offset="0.714"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
 
     </Grid>
 </Window>

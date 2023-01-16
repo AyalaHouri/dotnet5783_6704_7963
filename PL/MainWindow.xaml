@@ -13,7 +13,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="showproductlist" Content="maneger" HorizontalAlignment="Left" Margin="136,241,0,0" VerticalAlignment="Top" Click="showproductlist_Click" Height="28" Width="100" Foreground="#FF20201C" Background="{x:Null}">
+        <Button x:Name="showproductlist" Content="maneger" HorizontalAlignment="Left" Margin="136,241,0,0" VerticalAlignment="Top" Click="showproductlist_Click" Height="28" Width="100" Foreground="#FF20201C" Background="{x:Null}" FontWeight="Bold">
             <Button.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black"/>
@@ -21,10 +21,18 @@
                 </LinearGradientBrush>
             </Button.BorderBrush>
         </Button>
-        <Label Content="Welcome to BU!&#xD;&#xA;To enter press the BUtton below" Margin="169,134,381,253"/>
-        <Button Content="Close" HorizontalAlignment="Left" Margin="726,10,0,0" VerticalAlignment="Top" Height="25" Width="64" Background="#FF85AF4B" Click="Button_Click"/>
-        <Button x:Name="addorder" Content="new order" HorizontalAlignment="Center" Margin="0,241,0,0" VerticalAlignment="Top" Height="28" Width="94" Click="addorder_Click"/>
-        <Button x:Name="trackorder" Content="track order" HorizontalAlignment="Left" Margin="251,309,0,0" VerticalAlignment="Top" Height="25" Width="104" Click="trackorder_Click"/>
+        <Label Content="Welcome to BU!&#xD;&#xA;To enter press the BUtton below" Margin="95,122,382,229" FontSize="20" FontWeight="Bold"/>
+        <Button Content="Close" HorizontalAlignment="Left" Margin="726,10,0,0" VerticalAlignment="Top" Height="25" Width="64" Background="#FF85AF4B" Click="Button_Click" Foreground="#FF20201C"/>
+        <Button x:Name="addorder" Content="new order" HorizontalAlignment="Center" Margin="0,241,0,0" VerticalAlignment="Top" Height="28" Width="94" Click="addorder_Click" Foreground="#FF20201C" FontWeight="Bold">
+            <Button.Background>
+                <ImageBrush/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="trackorder" Content="track order" HorizontalAlignment="Left" Margin="251,309,0,0" VerticalAlignment="Top" Height="25" Width="104" Click="trackorder_Click" Foreground="#FF20201C" FontWeight="Bold">
+            <Button.Background>
+                <ImageBrush/>
+            </Button.Background>
+        </Button>
 
     </Grid>
 </Window>

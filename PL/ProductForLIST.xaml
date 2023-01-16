@@ -20,18 +20,41 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
-VerticalAlignment="Stretch" Width="auto" Background="#FFEBEBEB">
+VerticalAlignment="Stretch" Width="auto" Background="#FF132C22">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100*"/>
+                <ColumnDefinition Width="81*"/>
+                <ColumnDefinition Width="19*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox Grid.Column="1" Name="CategorySelector" HorizontalAlignment="Center" SelectionChanged="CategorySelector_SelectionChanged" SizeChanged="CategorySelector_SizeChanged" Width="400">
+            <ComboBox Grid.Column="1" Name="CategorySelector" HorizontalAlignment="Left" SelectionChanged="CategorySelector_SelectionChanged" SizeChanged="CategorySelector_SizeChanged" Width="400" Text="Choose your Category" Grid.ColumnSpan="2">
+                <ComboBox.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#FFF0F0F0"/>
+                        <GradientStop Color="#FF339A56" Offset="1"/>
+                    </LinearGradientBrush>
+                </ComboBox.Background>
                 <!--<ComboBox Width="120"/>-->
             </ComboBox>
-            <Button x:Name="orderbutton" Content="order" HorizontalAlignment="Left" Margin="238,0,0,0" VerticalAlignment="Center" Height="30" Width="92" Click="orderbutton_Click"/>
-            <Button x:Name="ProductButton" Content="pruoduct" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Center" Height="30" Width="92" Click="ProductButton_Click"/>
+            <Button x:Name="orderbutton" Content="order" HorizontalAlignment="Left" Margin="238,0,0,0" VerticalAlignment="Center" Height="30" Width="92" Click="orderbutton_Click" BorderBrush="#FF4EB620">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF186A0E"/>
+                        <GradientStop Color="#FFB7EFB0" Offset="1"/>
+                        <GradientStop Color="#FF6CDB5E" Offset="0.441"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button x:Name="ProductButton" Content="pruoduct" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Center" Height="30" Width="92" Click="ProductButton_Click">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF186A0E"/>
+                        <GradientStop Color="#FFB7EFB0" Offset="1"/>
+                        <GradientStop Color="#FF6CDB5E" Offset="0.441"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
         </Grid>
-        <ListView x:Name="ProductList" SelectionChanged="ProductList_SelectionChanged" Margin="115,119,115,124" MouseDoubleClick="ProductList_MouseDoubleClick" Grid.Row="1">
+        <ListView x:Name="ProductList" SelectionChanged="ProductList_SelectionChanged" Margin="115,119,115,124" MouseDoubleClick="ProductList_MouseDoubleClick" Grid.Row="1" FontFamily="Impact">
 
             <ListView.Background>
                 <ImageBrush ImageSource="/Screenshot 2022-12-13 121650.png"/>
@@ -65,7 +88,10 @@ VerticalAlignment="Stretch" Width="auto" Background="#FFEBEBEB">
         </ListView>
         <Button x:Name="addproduct" Content="Add new Product" Grid.Row="2" HorizontalAlignment="Right" Margin="5" Padding="5" Click="addproduct_Click" Background="#FF668F66"/>
         <Button Content="Back" HorizontalAlignment="Left" Margin="24,0,0,0" Grid.Row="2" VerticalAlignment="Center" Height="28" Width="108" Background="#FFA5D228" Click="Button_Click_2"/>
-        <ListView x:Name="orderlist" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="115,119,115,124" MouseDoubleClick="orderlist_MouseDoubleClick" SelectionChanged="orderlist_SelectionChanged">
+        <ListView x:Name="orderlist" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="115,119,115,124" MouseDoubleClick="orderlist_MouseDoubleClick" SelectionChanged="orderlist_SelectionChanged" FontFamily="Impact">
+            <ListView.Background>
+                <ImageBrush ImageSource="/Screenshot 2022-12-13 121650.png"/>
+            </ListView.Background>
             <ListView.View>
                 <GridView>
                     <GridViewColumn  DisplayMemberBinding = "{Binding Path = ID}"
@@ -91,7 +117,6 @@ VerticalAlignment="Stretch" Width="auto" Background="#FFEBEBEB">
                     DisplayMemberBinding = "{Binding Path = TotalPrice}"
                     Header = "Total Price"
                     Width = "80" />
-
                 </GridView>
             </ListView.View>
         </ListView>

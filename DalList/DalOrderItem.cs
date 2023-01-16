@@ -61,7 +61,7 @@ internal class DalOrderItem : IOrderItem
 
     IEnumerable<OrderItem?> IOrderItem.GetOrderItemsByproductId(int prudactid)
     {
-        return DataSource.LOrderItem.Where(pruduct => pruduct?.ID == prudactid);
+        return DataSource.LOrderItem.Where(orderItem => orderItem?.ProductID == prudactid);
     }
 
     public IEnumerable<OrderItem?> GetTheList(Func<OrderItem?, bool>? func = null)

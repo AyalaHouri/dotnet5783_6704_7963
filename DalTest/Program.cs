@@ -203,7 +203,9 @@
 //        }
 //    }
 
-//    static void Main(string[] arr) {
+    static void Main(string[] arr)
+{
+}
 //        Console.WriteLine("Welcome to our shop!\n" +
 //            " in order to start please enter tou choice\n" +
 //            "0 Exit\n"+

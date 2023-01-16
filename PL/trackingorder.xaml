@@ -7,11 +7,41 @@
         mc:Ignorable="d"
         Title="trackingorder" Height="450" Width="800">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Screenshot 2022-12-13 121650.png"/>
+        </Grid.Background>
         <Label x:Name="LABELID" Content="Enter your order ID " HorizontalAlignment="Center" Margin="0,58,0,0" VerticalAlignment="Top" Height="36" Width="122"/>
         <TextBox x:Name="enterid" HorizontalAlignment="Center" Margin="0,99,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="148" Height="22"/>
-        <Button x:Name="tracktheid" Content="Track" HorizontalAlignment="Center" Margin="0,146,0,0" VerticalAlignment="Top" Click="tracktheid_Click"/>
-        <Button x:Name="ordershow" Content="see your order" HorizontalAlignment="Left" Margin="345,337,0,0" VerticalAlignment="Top" Height="38" Width="94" Click="ordershow_Click"/>
-        <Button x:Name="back" Content="back" HorizontalAlignment="Left" Margin="44,378,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.52,2.737" Click="back_Click"/>
+        <Button x:Name="tracktheid" Content="Track" HorizontalAlignment="Center" Margin="0,146,0,0" VerticalAlignment="Top" Click="tracktheid_Click" BorderBrush="#FF4EB620">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF5A8655"/>
+                    <GradientStop Color="#FF267A1C" Offset="1"/>
+                    <GradientStop Color="#FF46833F" Offset="0.35"/>
+                    <GradientStop Color="#FF429939" Offset="0.714"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="ordershow" Content="see your order" HorizontalAlignment="Left" Margin="345,337,0,0" VerticalAlignment="Top" Height="38" Width="94" Click="ordershow_Click" BorderBrush="#FF4EB620">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF5A8655"/>
+                    <GradientStop Color="#FF267A1C" Offset="1"/>
+                    <GradientStop Color="#FF46833F" Offset="0.35"/>
+                    <GradientStop Color="#FF429939" Offset="0.714"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="back" Content="back" HorizontalAlignment="Left" Margin="44,378,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.52,2.737" Click="back_Click" BorderBrush="#FF4EB620">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF5A8655"/>
+                    <GradientStop Color="#FF267A1C" Offset="1"/>
+                    <GradientStop Color="#FF46833F" Offset="0.35"/>
+                    <GradientStop Color="#FF429939" Offset="0.714"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
         <StackPanel x:Name="stackPanel" Orientation="Vertical" Margin="108,86,108,131" HorizontalAlignment="Center" >
 
             <TextBlock   Text="ID:" />

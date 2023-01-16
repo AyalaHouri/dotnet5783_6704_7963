@@ -63,7 +63,6 @@ namespace PL
             try
             {
                 _bl.Order.UpdateStock(order.ID);
-                //order.DeliveryDate= DateTime.Now;
                 int id = order.ID;
                 order = _bl.Order.OrderDetail(id);
                 Deliverd.IsEnabled=false;
@@ -91,7 +90,6 @@ namespace PL
             try
             {
                 _bl.Order.ordershipdateupdate(order.ID);
-                //order.DeliveryDate= DateTime.Now;
                 int id = order.ID;
                 order = _bl.Order.OrderDetail(id);
                 Shipped.IsEnabled=false;

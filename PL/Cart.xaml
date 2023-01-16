@@ -7,7 +7,10 @@
         mc:Ignorable="d"
         Title="Cart" Height="450" Width="800">
     <Grid>
-        <ListView x:Name="cartview" ItemsSource="{Binding Path=Items}" Margin="62,113,54,156" MouseDoubleClick="cartview_MouseDoubleClick">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Screenshot 2022-12-13 121650.png"/>
+        </Grid.Background>
+        <ListView x:Name="cartview" ItemsSource="{Binding Path=Items}" Margin="62,113,54,156" MouseDoubleClick="cartview_MouseDoubleClick" Background="#FFC6F083" FontFamily="Arial Black" BorderBrush="#FF2167E4">
             <ListView.View>
                 <GridView>
                     <GridViewColumn  DisplayMemberBinding = "{Binding Path = ID}"
@@ -41,7 +44,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Button x:Name="a" Content="+" Click="Increase_Click" Tag="{Binding ProductID}"/>
-                                
+
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -56,7 +59,16 @@
             </ListView.View>
         </ListView>
         <Label x:Name="cartlabel" Content="cart" HorizontalAlignment="Center" Margin="0,38,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="aproveorder" Content="Aaprove order" HorizontalAlignment="Left" Margin="55,344,0,0" VerticalAlignment="Top" Height="48" Width="101" Click="aproveorder_Click"/>
+        <Button x:Name="aproveorder" Content="Aaprove order" HorizontalAlignment="Left" Margin="55,344,0,0" VerticalAlignment="Top" Height="48" Width="101" Click="aproveorder_Click" BorderBrush="#FF4EB620">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF5A8655"/>
+                    <GradientStop Color="#FF267A1C" Offset="1"/>
+                    <GradientStop Color="#FF46833F" Offset="0.35"/>
+                    <GradientStop Color="#FF429939" Offset="0.714"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
         <Label x:Name="empty" Content="your cart is empty!!!" HorizontalAlignment="Center" Margin="0,183,0,0" VerticalAlignment="Top" Width="320"/>
         <Label x:Name="namelabl" Content="name:" HorizontalAlignment="Left" Margin="192,100,0,0" VerticalAlignment="Top" Width="130"/>
         <Label x:Name="adresslab" Content="adress:" HorizontalAlignment="Left" Margin="192,131,0,0" VerticalAlignment="Top" Width="126"/>
@@ -64,8 +76,26 @@
         <TextBox x:Name="namebox" Text="{Binding Path=CustomerName }" HorizontalAlignment="Left" Margin="295,108,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="adresbox" Text="{Binding Path=CustomerAddress}" HorizontalAlignment="Left" Margin="295,139,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="emailbox" Text="{Binding Path=CustomerEmail}" HorizontalAlignment="Left" Margin="295,170,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.058,1.05"/>
-        <Button x:Name="finish" Content="aprove" HorizontalAlignment="Left" Margin="335,318,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.96,0.866" Height="38" Width="122" Click="finish_Click"/>
-        <Button Content="Back" HorizontalAlignment="Left" Margin="665,368,0,0" VerticalAlignment="Top" Width="81" Height="32" Click="Button_Click"/>
+        <Button x:Name="finish" Content="aprove" HorizontalAlignment="Left" Margin="335,318,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.96,0.866" Height="38" Width="122" Click="finish_Click" BorderBrush="#FF4EB620">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF5A8655"/>
+                    <GradientStop Color="#FF267A1C" Offset="1"/>
+                    <GradientStop Color="#FF46833F" Offset="0.35"/>
+                    <GradientStop Color="#FF429939" Offset="0.714"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Back" HorizontalAlignment="Left" Margin="665,368,0,0" VerticalAlignment="Top" Width="81" Height="32" Click="Button_Click" BorderBrush="#FF4EB620">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF5A8655"/>
+                    <GradientStop Color="#FF267A1C" Offset="1"/>
+                    <GradientStop Color="#FF46833F" Offset="0.35"/>
+                    <GradientStop Color="#FF429939" Offset="0.714"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
 
     </Grid>
 </Window>

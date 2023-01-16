@@ -10,12 +10,10 @@
 		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
 		<UseCommonOutputDirectory>true</UseCommonOutputDirectory>
 		<RootNamespace>Dal</RootNamespace>
-
-
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\ClassLibrary1\DalFacade.csproj" />
+	  <ProjectReference Include="..\ClassLibrary1\DalFacade.csproj" />
 	</ItemGroup>
 
 </Project>
