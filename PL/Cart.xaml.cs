@@ -24,8 +24,6 @@ namespace PL
         public Cart(BO.Cart cart)
         {
             InitializeComponent();
-            namebox.Visibility = Visibility.Hidden;
-            namelabl.Visibility = Visibility.Hidden;
             adresbox.Visibility = Visibility.Hidden;
             adresslab.Visibility = Visibility.Hidden;
             emailbox.Visibility = Visibility.Hidden;
@@ -103,7 +101,6 @@ namespace PL
                 ///BO.ProductForList p = (sender as Button).DataContext as BO.ProductForList;
                 cartpl=_bl.Cart.UpdateAmount(cartpl, (int)button.Tag,-1);
                 cartview.Items.Refresh();
-
             }
             catch (BO.ExceptionLogi ex)
             {

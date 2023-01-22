@@ -1,0 +1,38 @@
+﻿<Window x:Class="PL.sinulator"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="sinulator" Height="450" Width="800">
+    <Grid>
+        <Button x:Name="stop" Content="stop" HorizontalAlignment="Left" Margin="49,366,0,0" VerticalAlignment="Top" Width="96" Height="32" Click="stop_Click"/>
+        <Button x:Name="start" Content="start" HorizontalAlignment="Left" Margin="172,366,0,0" VerticalAlignment="Top" Width="89" Height="32" Click="start_Click"/>
+        <DataGrid x:Name="orders" HorizontalAlignment="Left" Height="312" Margin="49,40,0,0" VerticalAlignment="Top" Width="698" ItemsSource="{Binding}" AutoGenerateColumns="False" CanUserResizeColumns="False"  CanUserReorderColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+             
+                <DataGridTextColumn x:Name="IDColumn" Binding="{Binding ID}" Header="ID" Width="0.3*" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="namecustomerColumn" Binding="{Binding OrderStatus}" Header="Customer Name" Width="0.5*" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="statuseColumn" Binding="{Binding CustomerName}" Header="Order Status" Width="0.4*" IsReadOnly="True" />
+
+                <DataGridTextColumn x:Name="priceColumn" Binding="{Binding TotalPrice }" Header="total price " Width="0.2*" IsReadOnly="True" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="tracking_Click" Tag="{Binding ID}">tracking</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ProgressBar Name="slider"  Width="80" Minimum="0" Maximum="3" Value="1"  Tag="{Binding OrderStatus}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock x:Name="timeTextBlock" HorizontalAlignment="Left" Margin="490,369,0,0" TextWrapping="Wrap" Text="00:00:00" VerticalAlignment="Top" Height="26" Width="257" RenderTransformOrigin="0.241,-0.16"/>
+    </Grid>
+</Window>

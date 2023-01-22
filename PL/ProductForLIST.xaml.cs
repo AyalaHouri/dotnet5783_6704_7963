@@ -10,7 +10,7 @@ namespace PL
     public partial class ProductForLIST : Window
     {
         private BlApi.IBl _bl = BlApi.Factory.Get();
-        static int x ;
+        static int x;
         public ProductForLIST()
         {
             InitializeComponent();
@@ -19,12 +19,12 @@ namespace PL
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enum.category));
             orderlist.Visibility = Visibility.Hidden;
         }
-     
-        
+
+
 
         private void ProductList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+
         }
 
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -36,10 +36,10 @@ namespace PL
         private void CategorySelector_SizeChanged(object sender, SizeChangedEventArgs e)
         {
 
-          //CategorySelector.ItemsSource = _bl.Product.AskForCategory();
+            //CategorySelector.ItemsSource = _bl.Product.AskForCategory();
         }
 
-       
+
 
         //private void Button_Click_1(object sender, RoutedEventArgs e)
         //{
@@ -63,7 +63,7 @@ namespace PL
         private void ProductButton_Click(object sender, RoutedEventArgs e)
         {
             orderlist.Visibility = Visibility.Hidden;
-           ProductList.Visibility = Visibility.Visible;
+            ProductList.Visibility = Visibility.Visible;
             CategorySelector.Visibility = Visibility.Visible;
         }
 
@@ -72,7 +72,7 @@ namespace PL
             ProductList.Visibility = Visibility.Hidden;
             orderlist.Visibility = Visibility.Visible;
             CategorySelector.Visibility = Visibility.Hidden;
-            
+
         }
 
         private void addproduct_Click(object sender, RoutedEventArgs e)
@@ -87,14 +87,26 @@ namespace PL
             var order = (BO.OrderForList)orderlist.SelectedItem;
             try
             {
-                new Order(order.ID, false).Show();
+                new Order(order.ID, false, false).Show();
                 Close();
             }
-           
+
             catch (BO.ExceptionLogi ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void Dorder_Click(object sender, RoutedEventArgs e)
+        {
+            new trackingorder(true).Show();
+            Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new Product(true).Show();
+            Close();
         }
 
         private void orderlist_SelectionChanged(object sender, SelectionChangedEventArgs e)

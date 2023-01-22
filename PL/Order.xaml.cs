@@ -20,30 +20,34 @@ namespace PL
     /// <summary>
     /// Interaction logic for Order.xaml
     /// </summary>
-    
+
     public partial class Order : Window
-    { 
+    {
         private BlApi.IBl _bl = BlApi.Factory.Get();
         BO.Order order { get; set; }
-        public Order(int id,bool p)
+        public Order(int id, bool p, bool t)
         {
             InitializeComponent();
-            order= _bl.Order.OrderDetail(id);
+            order = _bl.Order.OrderDetail(id);
             Backtotrack.Visibility = Visibility.Hidden;
-            if (order.DeliveryDate<DateTime.Now|| order.ShipDate < DateTime.Now)
-                Deliverd.IsEnabled = false;
-            if (order.ShipDate < DateTime.Now)
-                    Shipped.IsEnabled = false;
+            if (order.DeliveryDate != null)
+            {              
+                Deliverd.Visibility = Visibility.Hidden;
+                Shipped.Visibility = Visibility.Hidden;
+            }
+            if (order.ShipDate != null && order.DeliveryDate == null)
+            {
+                Shipped.Visibility = Visibility.Hidden;
+            }
             if (p)
             {
                 Backtotrack.Visibility = Visibility.Visible;
                 back.Visibility = Visibility.Hidden;
                 Deliverd.Visibility = Visibility.Hidden;
                 Shipped.Visibility = Visibility.Hidden;
-                //UpdateStock.Visibility = Visibility.Hidden;
             }
-            DataContext= order;
-            items.ItemsSource = order.Items;
+            DataContext = order;
+            itemsview.ItemsSource = order.Items;
         }
 
         private void mainwindow_Click(object sender, RoutedEventArgs e)
@@ -65,7 +69,7 @@ namespace PL
                 _bl.Order.UpdateStock(order.ID);
                 int id = order.ID;
                 order = _bl.Order.OrderDetail(id);
-                Deliverd.IsEnabled=false;
+                Deliverd.IsEnabled = false;
                 DataContext = order;
             }
             catch (BO.ExceptionLogi ex)
@@ -74,17 +78,6 @@ namespace PL
             }
         }
 
-        //private void Plus_Click(object sender, RoutedEventArgs e)
-        //{
-         
-        //}
-
-        //private void Minus_Click(object sender, RoutedEventArgs e)
-        //{
-        //    //_bl.Order.UpDate(order.ID,order.);
-
-        //}
-
         private void Shipped_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -92,8 +85,8 @@ namespace PL
                 _bl.Order.ordershipdateupdate(order.ID);
                 int id = order.ID;
                 order = _bl.Order.OrderDetail(id);
-                Shipped.IsEnabled=false;
-                Deliverd.IsEnabled = false;
+                Shipped.IsEnabled = false;
+                Deliverd.IsEnabled = true;
                 DataContext = order;
             }
             catch (BO.ExceptionLogi ex)
@@ -107,13 +100,30 @@ namespace PL
             new trackingorder().Show();
             Close();
         }
-        //private void Increase(object sender, RoutedEventArgs e)
-        //{
+        private void Dencrease(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = (sender as Button);
+                ///BO.ProductForList p = (sender as Button).DataContext as BO.ProductForList;
+                order = _bl.Order.UpDate(order.ID, (int)button.Tag, -1);
+                itemsview.ItemsSource = order.Items;
+                itemsview.Items.Refresh();
+            }
+            catch (BO.ExceptionLogi ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.Cancel);
+            }
 
-        //}
-        //private void Dencrease(object sender, RoutedEventArgs e)
-        //{
+        }
 
-        //}
+        private void Increase(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            var updatedOrder = _bl.Order.UpDate(order.ID, (int)button.Tag, 1);
+            order= updatedOrder;
+            itemsview.ItemsSource = order.Items;
+            itemsview.Items.Refresh();
+        }
     }
 }

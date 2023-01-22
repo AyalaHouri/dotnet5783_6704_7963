@@ -2,18 +2,30 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style x:Key="myButtonStyle" TargetType="Button">
+            <Setter Property="FontSize"
+                Value="20"/>
+            <Setter Property="FontFamily"
+                    Value="Consolas"/>
+            <Setter Property="FontWeight"
+                   Value="Bold"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Screenshot 2022-12-13 121650.png"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="151*"/>
+            <ColumnDefinition Width="649*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="showproductlist" Content="maneger" HorizontalAlignment="Left" Margin="136,241,0,0" VerticalAlignment="Top" Click="showproductlist_Click" Height="28" Width="100" Foreground="#FF20201C" Background="{x:Null}" FontWeight="Bold">
+        <Button x:Name="showproductlist" Style="{StaticResource myButtonStyle}"  Content="maneger" HorizontalAlignment="Left" Margin="136,241,0,0" VerticalAlignment="Top" Click="showproductlist_Click" Height="37" Width="142" Foreground="#FF20201C" Background="{x:Null}" FontWeight="Bold" Grid.ColumnSpan="2">
             <Button.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black"/>
@@ -21,18 +33,44 @@
                 </LinearGradientBrush>
             </Button.BorderBrush>
         </Button>
-        <Label Content="Welcome to BU!&#xD;&#xA;To enter press the BUtton below" Margin="95,122,382,229" FontSize="20" FontWeight="Bold"/>
-        <Button Content="Close" HorizontalAlignment="Left" Margin="726,10,0,0" VerticalAlignment="Top" Height="25" Width="64" Background="#FF85AF4B" Click="Button_Click" Foreground="#FF20201C"/>
-        <Button x:Name="addorder" Content="new order" HorizontalAlignment="Center" Margin="0,241,0,0" VerticalAlignment="Top" Height="28" Width="94" Click="addorder_Click" Foreground="#FF20201C" FontWeight="Bold">
+        <!--<Label Content="Welcome to BU!&#xD;&#xA;To enter press the BUtton below"/>-->
+        <TextBlock x:Name="lblStyled" FontSize="18" HorizontalAlignment="Left"  FontWeight="Bold"
+VerticalAlignment="Top" Height="183" Width="612" Margin="0,34,0,0" Grid.ColumnSpan="2">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="UIElement.MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Duration="0:0:0.300" Storyboard.TargetProperty="FontSize" To="28" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="UIElement.MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Duration="0:0:0.800" Storyboard.TargetProperty="FontSize" To="18" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style><Run/><LineBreak/><Run/><LineBreak/><Run Text="           Welcome to BU!&#xA;           To enter press the BUtton below"/></TextBlock>
+        <Button Content="Close" Style="{StaticResource myButtonStyle}"  HorizontalAlignment="Left" Margin="575,10,0,0" VerticalAlignment="Top" Height="25" Width="64" Background="#FF85AF4B" Click="Button_Click" Foreground="#FF20201C" Grid.Column="1"/>
+        <Button x:Name="addorder" Content="new order" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="202,241,0,0" VerticalAlignment="Top" Height="37" Width="108" Click="addorder_Click" Foreground="#FF20201C" FontWeight="Bold" Grid.Column="1">
             <Button.Background>
                 <ImageBrush/>
             </Button.Background>
         </Button>
-        <Button x:Name="trackorder" Content="track order" HorizontalAlignment="Left" Margin="251,309,0,0" VerticalAlignment="Top" Height="25" Width="104" Click="trackorder_Click" Foreground="#FF20201C" FontWeight="Bold">
+        <Button x:Name="trackorder" Style="{StaticResource myButtonStyle}" Content="track order" HorizontalAlignment="Left" Margin="132,307,0,0" VerticalAlignment="Top" Height="38" Width="146" Click="trackorder_Click" Foreground="#FF20201C" FontWeight="Bold" Grid.ColumnSpan="2">
             <Button.Background>
                 <ImageBrush/>
             </Button.Background>
         </Button>
-
+        <Button x:Name="simulator" Content="simulator" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="202,307,0,0" VerticalAlignment="Top" Height="38" Width="108" RenderTransformOrigin="0.29,0.429" Click="simulator_Click" Grid.Column="1">
+            <Button.Background>
+                <ImageBrush/>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>

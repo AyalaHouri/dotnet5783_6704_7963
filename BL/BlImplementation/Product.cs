@@ -1,5 +1,6 @@
 ﻿
 
+using System.Collections.Specialized;
 using System.Linq;
 using System.Security.Cryptography;
 
@@ -96,16 +97,17 @@ namespace BlImplementation
         {
             IEnumerable<DO.OrderItem?>? lorder = _idal?.OrderItem.GetTheList();
             IEnumerable<DO.Product?>? lproduct = _idal?.Product.GetTheList();
-            if(lproduct.FirstOrDefault(itemproduct => itemproduct?.ID == IDProduct)!=null)
-                {
+            if (lproduct.FirstOrDefault(itemproduct => itemproduct?.ID == IDProduct) != null)
+            {
                 if (lorder.FirstOrDefault(item => item?.ProductID == IDProduct) != null)
-                    throw new Exception("THE PRODUCT IS EXIST IN ORDERS, CAN NOT DELETE\n");
+                    throw new BO.ExceptionLogi("THE PRODUCT IS EXIST IN ORDERS, CAN NOT DELETE\n");
                 DO.Product tproduct = (DO.Product)(_idal?.Product.GetByID(IDProduct));
                 _idal.Product.Delete(tproduct);
+                //Console.WriteLine("THE PRODUCT SUCCESSFULLY DELETED\n");
                 return;
             }
-            throw new Exception("THE PRODUCT ISNOT EXIST\n");
-    }
+            throw new BO.ExceptionLogi("THE PRODUCT ISNOT EXIST\n");
+        }
         public void updateProduct(BO.Product DProduct)///update product by id
         {
 
@@ -129,12 +131,12 @@ namespace BlImplementation
             throw new BO.ExceptionLogi("CAN'T UPDATE\n");
         }
 
-     
+
         public IEnumerable<BO.ProductForList?> GetProducts(Func<DO.Product?, bool>? func)///gets all the products
         {
             List<BO.ProductForList?> productsForList = new List<BO.ProductForList?>();
             List<DO.Product?> products = new List<DO.Product?>();
-            products = _idal.Product.GetTheList().ToList();
+            products = (List<DO.Product?>)_idal.Product.GetTheList();
             if (func != null)
             {
                 return products.Where(product => func(product)).Select(product =>

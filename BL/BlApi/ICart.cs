@@ -13,8 +13,5 @@ public interface ICart
     public Cart AddToCart(Cart cart, int product);
     public Cart UpdateAmount(Cart cart, int product, int newAmount);
     public void AproveOrder(Cart cart);
-     public void DeletAll(Cart cart);
-
-
-
+    public void DeletAll(Cart cart);
 }

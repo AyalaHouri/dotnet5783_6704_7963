@@ -41,5 +41,11 @@ namespace PL
             new trackingorder().Show();
             Close();
         }
+
+        private void simulator_Click(object sender, RoutedEventArgs e)
+        {
+            new sinulator().Show();
+            Close();
+        }
     } 
 }

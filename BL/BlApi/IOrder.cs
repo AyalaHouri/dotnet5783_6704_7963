@@ -18,5 +18,7 @@ namespace BlApi
         public BO.Order UpdateStock(int orderid);
         public BO.OrderTracking OrderTrackingFunc(int orderid);
         public BO.Order UpDate(int orderID, int productID, int plus_minus);
+        public int? ordertosimulator();
+        public void Deleteorder(BO.Order order);
     }
 }

@@ -47,17 +47,17 @@
         <Label x:Name="cela" Content="{Binding Path=CustomerEmail }" HorizontalAlignment="Left" Margin="279,172,0,0" VerticalAlignment="Top" Height="26" Width="110" Background="#FFBCCE77"/>
         <Label x:Name="odla" Content="{Binding Path=OrderDate}" HorizontalAlignment="Left" Margin="279,0,0,0" VerticalAlignment="Center" Height="26" Width="110" Background="#FFBCCE77"/>
         <Label x:Name="sdla" Content="{Binding Path=ShipDate }" HorizontalAlignment="Left" Margin="552,195,0,0" VerticalAlignment="Top" Height="26" Width="110" RenderTransformOrigin="-0.686,0.105" Background="#FFBCCE77"/>
-        <Label x:Name="ddla" Content="{Binding DeliveryDate }" HorizontalAlignment="Left" Margin="552,89,0,0" VerticalAlignment="Top" Height="26" Width="110" Background="#FFBCCE77"/>
+        <Label x:Name="ddla" Content="{Binding Path=DeliveryDate }" HorizontalAlignment="Left" Margin="552,89,0,0" VerticalAlignment="Top" Height="26" Width="110" Background="#FFBCCE77"/>
         <Label x:Name="statusla" Content="{Binding Path=OrderStatus }" HorizontalAlignment="Left" Margin="552,120,0,0" VerticalAlignment="Top" Height="26" Width="110" Background="#FFBCCE77"/>
         <Label x:Name="totalla" Content="{Binding Path=TotalPrice }" HorizontalAlignment="Left" Margin="552,158,0,0" VerticalAlignment="Top" Height="26" Width="110" Background="#FFBCCE77"/>
-        <ListView x:Name="items" d:ItemsSource="{Binding Items}" Margin="78,246,78,83" Background="#FF84BD47">
+        <ListView x:Name="itemsview" ItemsSource="{Binding Items}" Margin="78,246,78,83" Background="#FF84BD47">
             <ListView.View>
                 <GridView>
                     <GridViewColumn  DisplayMemberBinding = "{Binding Path = ID}"
                         
                     Header = "ID"
                     Width = "80" />
-
+                   
                     <GridViewColumn
                     DisplayMemberBinding = "{Binding Path =ProductID }"
                     Header = "product id "
@@ -77,24 +77,26 @@
                     DisplayMemberBinding = "{Binding Path = Amount}"
                     Header = "Amount"
                     Width = "80" />
-                    <GridViewColumn
-                    DisplayMemberBinding = "{Binding Path = TotalPrice}"
-                    Header = "total price"
-                    Width = "80" />
-                    <!--<GridViewColumn Header = "Add" Width = "80">
+
+                    <GridViewColumn Header = "Add" Width = "80">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="+" Click="Increase"/>
+                                <Button Content="+" Click="Increase" Tag="{Binding ProductID}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header = "Minus" Width = "80">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="-" Click="Dencrease"/>
+                                <Button Content="-" Click="Dencrease" Tag="{Binding ProductID}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
-                    </GridViewColumn>-->
+                    </GridViewColumn>
+                    <GridViewColumn
+                    DisplayMemberBinding = "{Binding Path = TotalPrice}"
+                    Header = "total price"
+                    Width = "80" />
+                    
                 </GridView>
             </ListView.View>
         </ListView>

@@ -10,7 +10,20 @@
         <Grid.Background>
             <ImageBrush ImageSource="/Screenshot 2022-12-13 121650.png"/>
         </Grid.Background>
-        <Label x:Name="LABELID" Content="Enter your order ID " HorizontalAlignment="Center" Margin="0,58,0,0" VerticalAlignment="Top" Height="36" Width="122"/>
+        <!--<Label x:Name="LABELID" Content="Enter your order ID " HorizontalAlignment="Center" Margin="0,58,0,0" VerticalAlignment="Top" Height="36" Width="122"></Label>-->
+        <TextBlock x:Name="TextID" Text="Enter your order ID" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,65,0,0" RenderTransformOrigin="0.489,0.035">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Foreground" Value="Black"></Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="Red" />
+                            <Setter Property="TextDecorations" Value="Underline" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
         <TextBox x:Name="enterid" HorizontalAlignment="Center" Margin="0,99,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="148" Height="22"/>
         <Button x:Name="tracktheid" Content="Track" HorizontalAlignment="Center" Margin="0,146,0,0" VerticalAlignment="Top" Click="tracktheid_Click" BorderBrush="#FF4EB620">
             <Button.Background>
@@ -55,6 +68,9 @@
         </StackPanel>
 
 
+        <Button x:Name="backtosimolator" Content="Back" HorizontalAlignment="Left" Margin="685,376,0,0" VerticalAlignment="Top" Click="backtosimolator_Click"/>
+        <Button x:Name="Dorder" Content="Delete" HorizontalAlignment="Center" Margin="0,146,0,0" VerticalAlignment="Top" Click="Dorder_Click"/>
+        <Button x:Name="BackToM" Content="Back" Margin="348,376,364,34" RenderTransformOrigin="1.837,8.735" Click="BackToM_Click" Background="#FF7AA462"/>
 
     </Grid>
 </Window>

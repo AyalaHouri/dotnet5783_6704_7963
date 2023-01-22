@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Xml.Linq;
 
 namespace PL
 {
@@ -57,7 +59,8 @@ namespace PL
             labelid.Visibility = Visibility.Hidden;
             addtocart.Visibility = Visibility.Hidden;
             addbutton.Visibility = Visibility.Hidden;
-            TextBoxLable.Content = "Update product:";
+            TextBoxLable.Content = "Update Product:";
+            Dproduct.Visibility = Visibility.Hidden;
         }
         public Product()
         {
@@ -69,7 +72,30 @@ namespace PL
             labelid.Visibility = Visibility.Hidden;
             addtocart.Visibility = Visibility.Hidden;
             updatebutton.Visibility = Visibility.Hidden;
-            TextBoxLable.Content = "add product:";
+            TextBoxLable.Content = "Add Product:";
+        }
+        public Product(bool t)
+        {
+            InitializeComponent();
+            cartback.Visibility = Visibility.Hidden;
+            back.Visibility = Visibility.Visible;
+            Categorycb.ItemsSource = Enum.GetValues(typeof(BO.Enum.category));
+            labelcategory.Visibility = Visibility.Hidden;
+            labelname.Visibility = Visibility.Hidden;
+            labelprice.Visibility = Visibility.Hidden;
+            labelid.Visibility = Visibility.Hidden;
+            addtocart.Visibility = Visibility.Hidden;
+            addbutton.Visibility = Visibility.Hidden;
+            updatebutton.Visibility = Visibility.Hidden;
+            Amount.Visibility = Visibility.Hidden;
+            Pricetb.Visibility = Visibility.Hidden;
+            Nametb.Visibility= Visibility.Hidden;
+            Categorycb.Visibility = Visibility.Hidden;
+            amountlabel.Visibility = Visibility.Hidden;
+            Lprice.Visibility = Visibility.Hidden;
+            Lcategory.Visibility = Visibility.Hidden;
+            Lname.Visibility = Visibility.Hidden;
+            TextBoxLable.Content = "Delete Product:";
         }
         protected void OnPropertyChanged(string propertyName)
         {
@@ -119,10 +145,6 @@ namespace PL
             {
                 MessageBox.Show(ex.Message, "error", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.Cancel);
             }
-
-
-
-
             new ProductForLIST().Show();
             Close();
 
@@ -184,6 +206,25 @@ namespace PL
 
         private void cartback_Click(object sender, RoutedEventArgs e)
         {
+            new ProductForLIST().Show();
+            Close();
+        }
+
+        private void Dproduct_Click(object sender, RoutedEventArgs e)
+        {
+            int.TryParse(IDtb.Text, out int id);
+            try
+            {
+                _bl.Product.DeleteProduct(id);
+            }
+            catch (BO.ExceptionLogi ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.Cancel);
+            }
+            catch (DO.MyException ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.Cancel);
+            }
             new ProductForLIST().Show();
             Close();
         }

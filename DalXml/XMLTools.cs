@@ -9,7 +9,7 @@ namespace Dal;
 internal class XMLTools
 {
 
-   const string s_dir = @"Data";
+   const string s_dir = @"C:\miniproject\dotnet5783_6704_7963\dotnet5783_6704_7963\Data\";
     static XMLTools()
     {
         if (!Directory.Exists(s_dir)) Directory.CreateDirectory(s_dir);

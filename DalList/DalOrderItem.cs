@@ -25,7 +25,7 @@ internal class DalOrderItem : IOrderItem
     public void Update(int ID, OrderItem orderItem)
     {
 
-        OrderItem temporderitem = DataSource.searchOrderItem(ID) ?? throw new MyException("the id is null");
+        OrderItem temporderitem = DataSource.searchOrderItem(orderItem.ID) ?? throw new MyException("the id is null");
         Delete(temporderitem);
         temporderitem.ID = ID;
         temporderitem.OrderID = orderItem.OrderID;
@@ -56,7 +56,7 @@ internal class DalOrderItem : IOrderItem
 
     public IEnumerable<OrderItem?> GetOrderItemsByOrderId(int orderId)
     {
-        return DataSource.LOrderItem.Where(orderItem => orderItem?.ID == orderId);
+        return DataSource.LOrderItem.Where(orderItem => orderItem?.OrderID == orderId);
     }
 
     IEnumerable<OrderItem?> IOrderItem.GetOrderItemsByproductId(int prudactid)

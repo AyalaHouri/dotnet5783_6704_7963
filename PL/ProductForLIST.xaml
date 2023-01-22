@@ -86,7 +86,7 @@ VerticalAlignment="Stretch" Width="auto" Background="#FF132C22">
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="addproduct" Content="Add new Product" Grid.Row="2" HorizontalAlignment="Right" Margin="5" Padding="5" Click="addproduct_Click" Background="#FF668F66"/>
+        <Button x:Name="addproduct" Content="Add Product" Grid.Row="2" HorizontalAlignment="Left" Margin="678,5,0,5" Padding="5" Click="addproduct_Click" Background="#FF668F66" Width="117"/>
         <Button Content="Back" HorizontalAlignment="Left" Margin="24,0,0,0" Grid.Row="2" VerticalAlignment="Center" Height="28" Width="108" Background="#FFA5D228" Click="Button_Click_2"/>
         <ListView x:Name="orderlist" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="115,119,115,124" MouseDoubleClick="orderlist_MouseDoubleClick" SelectionChanged="orderlist_SelectionChanged" FontFamily="Impact">
             <ListView.Background>
@@ -120,5 +120,8 @@ VerticalAlignment="Stretch" Width="auto" Background="#FF132C22">
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button x:Name="Dorder" Content="Delete Order" HorizontalAlignment="Left" Margin="683,30,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="117" Background="#FF4D6C30" Click="Dorder_Click"/>
+        <Button Content="Delete Product" HorizontalAlignment="Left" Margin="678,506,0,0" Grid.Row="1" VerticalAlignment="Top" Height="27" Width="117" Background="#FF4F834A" Click="Button_Click"/>
+
     </Grid>
 </Window>

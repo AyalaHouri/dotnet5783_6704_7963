@@ -1,4 +1,5 @@
-﻿using BlApi;
+﻿
+using BlApi;
 using System.Linq;
 
 namespace BlImplementation
@@ -134,12 +135,14 @@ namespace BlImplementation
         {
             if (cart.Items == null)
                 throw new BO.ExceptionLogi("your cart is empty");
-            if (cart.CustomerAddress == "")
-                throw new BO.ExceptionLogi("Customer Address is missing");
-            if (cart.CustomerName == "")
+            if (cart.CustomerName == null)
                 throw new BO.ExceptionLogi("Customer name is missing");
-            if (cart.CustomerEmail == "")
+            if (cart.CustomerAddress == null)
+                throw new BO.ExceptionLogi("Customer Address is missing");
+            if (cart.CustomerEmail == null)
                 throw new BO.ExceptionLogi("Customer email is missing");
+            if (!cart.CustomerEmail.Contains("@gmail.com"))
+                throw new BO.ExceptionLogi("Does not contain @gmail.com");
             ///if (cart.CustomerEmail.Contains("@gmail.com"))
             /// throw new BO.ExceptionLogi("Customer email is not valid");
             if (cart.Items.FirstOrDefault(item => item?.Price <= 1) != null)

@@ -7,6 +7,5 @@ internal class Bl : IBl
     public  IOrder Order => new BlImplementation.Order();
     public  IProduct Product => new BlImplementation.Product();
 
-
 }
 
