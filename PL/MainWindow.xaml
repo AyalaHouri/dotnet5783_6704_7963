@@ -33,6 +33,9 @@
                 </LinearGradientBrush>
             </Button.BorderBrush>
         </Button>
+        <Rectangle
+        Stroke="White"
+        StrokeThickness="5" Margin="33,58,114,217" Grid.ColumnSpan="2" />
         <!--<Label Content="Welcome to BU!&#xD;&#xA;To enter press the BUtton below"/>-->
         <TextBlock x:Name="lblStyled" FontSize="18" HorizontalAlignment="Left"  FontWeight="Bold"
 VerticalAlignment="Top" Height="183" Width="612" Margin="0,34,0,0" Grid.ColumnSpan="2">

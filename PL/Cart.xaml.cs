@@ -24,6 +24,8 @@ namespace PL
         public Cart(BO.Cart cart)
         {
             InitializeComponent();
+            namebox.Visibility = Visibility.Hidden;
+            namelabl.Visibility = Visibility.Hidden;
             adresbox.Visibility = Visibility.Hidden;
             adresslab.Visibility = Visibility.Hidden;
             emailbox.Visibility = Visibility.Hidden;

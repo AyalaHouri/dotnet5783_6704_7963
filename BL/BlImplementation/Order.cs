@@ -245,8 +245,9 @@ namespace BlImplementation
                         {
                             orderUpdate.TotalPrice += itemToUpdate.Price * plus_minus;
                             orderToUpdate.Remove(idFind);
-
+                            itemToUpdate.Amount += plus_minus;
                             _idal.OrderItem.Delete(new() { ID = (int)idFind?.ID, ProductID = itemToUpdate.ProductID, Amount = itemToUpdate.Amount, Price = itemToUpdate.Price, OrderID = orderID });
+                            orderUpdate = OrderDetail(orderID);
                             if (orderUpdate.TotalPrice <= 0)
                             {
                                 _idal.Order.Delete(new() { ID = orderID });

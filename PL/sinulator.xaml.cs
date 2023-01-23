@@ -105,6 +105,11 @@ namespace PL
             start.IsEnabled = true;
             stop.IsEnabled = false;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().Show();
+        }
         //private void Slider_ValueChanged(object sender, RoutedEventArgs e, Slider slider)
         //{
         //    Button button = (sender as Button);

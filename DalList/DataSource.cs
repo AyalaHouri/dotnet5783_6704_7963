@@ -256,7 +256,6 @@ internal static class DataSource
             get
             {
                 ID_Product++;
-                //  ID_Product = random.Next(100000, 1000000);
                 return ID_Product;
             }
         }

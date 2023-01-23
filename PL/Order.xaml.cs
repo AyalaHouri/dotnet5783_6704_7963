@@ -100,6 +100,27 @@ namespace PL
             new trackingorder().Show();
             Close();
         }
+        //private void Dencrease(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        Button button = sender as Button;
+        //        order = _bl.Order.UpDate(order.ID, (int)button.Tag, -1);
+        //        DataContext= order;
+        //        itemsview.Items.Refresh();
+        //    }
+            
+        //    catch (BO.ExceptionLogi)
+        //    {
+        //        MessageBox.Show("The details you entered are not correct", "Uncorrect details error", MessageBoxButton.OKCancel, MessageBoxImage.Warning, MessageBoxResult.Cancel);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        MessageBox.Show("The data you have enter is not found, please try again", "Error", MessageBoxButton.OKCancel, MessageBoxImage.Hand, MessageBoxResult.Cancel);
+
+        //    }
+
+        //}
         private void Dencrease(object sender, RoutedEventArgs e)
         {
             try
@@ -122,6 +143,7 @@ namespace PL
             Button button = sender as Button;
             var updatedOrder = _bl.Order.UpDate(order.ID, (int)button.Tag, 1);
             order= updatedOrder;
+            DataContext= updatedOrder;
             itemsview.ItemsSource = order.Items;
             itemsview.Items.Refresh();
         }

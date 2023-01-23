@@ -70,10 +70,10 @@
             </Button.Background>
         </Button>
         <Label x:Name="empty" Content="your cart is empty!!!" HorizontalAlignment="Center" Margin="0,183,0,0" VerticalAlignment="Top" Width="320"/>
-        <Label x:Name="namelabl" Visibility="{Binding Update, Converter={StaticResource trueVisibileConverter}}" Content="name:" HorizontalAlignment="Left" Margin="192,100,0,0" VerticalAlignment="Top" Width="130"/>
+        <Label x:Name="namelabl" Content="name:" HorizontalAlignment="Left" Margin="192,100,0,0" VerticalAlignment="Top" Width="130"/>
         <Label x:Name="adresslab" Content="adress:" HorizontalAlignment="Left" Margin="192,131,0,0" VerticalAlignment="Top" Width="126"/>
         <Label x:Name="emailab" Content="email:" HorizontalAlignment="Left" Margin="192,162,0,0" VerticalAlignment="Top" Width="126"/>
-        <TextBox x:Name="namebox" Visibility="{Binding Update, Converter={StaticResource trueVisibileConverter}}" Text="{Binding Path=CustomerName }" HorizontalAlignment="Left" Margin="295,108,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="namebox" Text="{Binding Path=CustomerName }" HorizontalAlignment="Left" Margin="295,108,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="adresbox" Text="{Binding Path=CustomerAddress}" HorizontalAlignment="Left" Margin="295,139,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="emailbox" Text="{Binding Path=CustomerEmail}" HorizontalAlignment="Left" Margin="295,170,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.058,1.05"/>
         <Button x:Name="finish" Content="aprove" HorizontalAlignment="Left" Margin="335,318,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.96,0.866" Height="38" Width="122" Click="finish_Click" BorderBrush="#FF4EB620">

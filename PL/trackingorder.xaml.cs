@@ -29,12 +29,13 @@ namespace PL
             ordershow.Visibility = Visibility.Visible;
             backtosimolator.Visibility = Visibility.Visible;
             back.Visibility = Visibility.Hidden;
+
             try
             {
                 BO.OrderTracking ordertrack = _bl.Order.OrderTrackingFunc(y);
                 stackPanel.Visibility = Visibility.Visible;
                 stackPanel.DataContext = ordertrack;
-
+                Dorder.Visibility = Visibility.Hidden;
             }
             catch (BO.ExceptionLogi ex)
             {

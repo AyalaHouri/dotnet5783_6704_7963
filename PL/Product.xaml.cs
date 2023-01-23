@@ -18,12 +18,11 @@ namespace PL
         public event PropertyChangedEventHandler PropertyChanged;/// <summary>
         BO.Cart caart;                                                      /// we add inotify-propertychange
                                                                             /// 
-        public Product(BO.ProductForList prod, BO.Cart cart)
+        public Product(BO.ProductForList prod, BO.Cart cart)///katalog
         {
             InitializeComponent();
             cartback.Visibility = Visibility.Visible;
             back.Visibility = Visibility.Hidden;
-            //ProductObservableCollection = new ObservableCollection<BO.Product> { _bl.Product.prudactrequest(prod.ID) };///input all the data of the product
             updatebutton.Visibility = Visibility.Hidden;
             addbutton.Visibility = Visibility.Hidden;
             TextBoxLable.Content = "product:";
@@ -44,7 +43,7 @@ namespace PL
 
         }
 
-        public Product(BO.Product product)
+        public Product(BO.Product product)///product for list
         {
             InitializeComponent();
             IDtb.IsEnabled = false;
@@ -62,7 +61,7 @@ namespace PL
             TextBoxLable.Content = "Update Product:";
             Dproduct.Visibility = Visibility.Hidden;
         }
-        public Product()
+        public Product()///product for list
         {
             InitializeComponent();
             Categorycb.ItemsSource = Enum.GetValues(typeof(BO.Enum.category));

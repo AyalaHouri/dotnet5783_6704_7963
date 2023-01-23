@@ -7,11 +7,22 @@
         mc:Ignorable="d"
         Title="sinulator" Height="450" Width="800">
     <Grid>
-        <Button x:Name="stop" Content="stop" HorizontalAlignment="Left" Margin="49,366,0,0" VerticalAlignment="Top" Width="96" Height="32" Click="stop_Click"/>
-        <Button x:Name="start" Content="start" HorizontalAlignment="Left" Margin="172,366,0,0" VerticalAlignment="Top" Width="89" Height="32" Click="start_Click"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Screenshot 2022-12-13 121650.png"/>
+        </Grid.Background>
+        <Button x:Name="stop" Content="stop" HorizontalAlignment="Left" Margin="49,366,0,0" VerticalAlignment="Top" Width="96" Height="32" Click="stop_Click" FontWeight="Bold" FontSize="18">
+            <Button.Background>
+                <ImageBrush/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="start" Content="start" HorizontalAlignment="Left" Margin="172,366,0,0" VerticalAlignment="Top" Width="89" Height="32" Click="start_Click" FontWeight="Bold" FontSize="20">
+            <Button.Background>
+                <ImageBrush/>
+            </Button.Background>
+        </Button>
         <DataGrid x:Name="orders" HorizontalAlignment="Left" Height="312" Margin="49,40,0,0" VerticalAlignment="Top" Width="698" ItemsSource="{Binding}" AutoGenerateColumns="False" CanUserResizeColumns="False"  CanUserReorderColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
-             
+
                 <DataGridTextColumn x:Name="IDColumn" Binding="{Binding ID}" Header="ID" Width="0.3*" IsReadOnly="True"/>
                 <DataGridTextColumn x:Name="namecustomerColumn" Binding="{Binding OrderStatus}" Header="Customer Name" Width="0.5*" IsReadOnly="True"/>
                 <DataGridTextColumn x:Name="statuseColumn" Binding="{Binding CustomerName}" Header="Order Status" Width="0.4*" IsReadOnly="True" />
@@ -34,5 +45,10 @@
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock x:Name="timeTextBlock" HorizontalAlignment="Left" Margin="490,369,0,0" TextWrapping="Wrap" Text="00:00:00" VerticalAlignment="Top" Height="26" Width="257" RenderTransformOrigin="0.241,-0.16"/>
+        <Button Content="Back" HorizontalAlignment="Left" Margin="696,366,0,0" VerticalAlignment="Top" Height="33" Width="51" Click="Button_Click" FontWeight="Bold" FontSize="16">
+            <Button.Background>
+                <ImageBrush/>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>
